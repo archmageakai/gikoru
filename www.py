@@ -6,9 +6,16 @@ source_dir = os.path.expanduser('~/gikoru/public/')
 destination_dir = os.path.expanduser('~/www/')
 
 # Function to clear all files and directories in the destination directory
+# but skip hidden directories like .git
 def clear_directory(directory):
     for item in os.listdir(directory):
         item_path = os.path.join(directory, item)
+
+        # Skip hidden directories and files (those starting with a dot)
+        if item.startswith('.'):
+            print(f"Skipped hidden item: {item_path}")
+            continue
+
         if os.path.isdir(item_path):
             shutil.rmtree(item_path)  # Remove directory and all its contents
             print(f"Removed directory: {item_path}")
@@ -20,7 +27,7 @@ def clear_directory(directory):
 if not os.path.exists(source_dir):
     print(f"Source directory {source_dir} does not exist.")
 else:
-    # Clear the destination directory before copying new files
+    # Clear the destination directory before copying new files, but skip .git
     if os.path.exists(destination_dir):
         clear_directory(destination_dir)
     else:
