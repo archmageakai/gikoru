@@ -1,0 +1,69 @@
+<html lang="en-us" dir="ltr">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    
+    <title>ギコっぽいの赤いネス</title>
+
+</head>
+
+<main>
+
+<div id="post">...</div>
+
+<script>
+
+const today = new Date();
+const fileName = `${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}.txt`;
+
+const filePath = `/jft_txt/${fileName}`;
+
+fetch(filePath)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('not available');
+        }
+        return response.text();
+    })
+    .then(data => {
+	
+        const modifiedText = data.replace(/Just for today/g, '<strong><u>Just for today</u></strong>');
+        
+        const lines = modifiedText.split('\n');
+        
+		if (lines[1]) {
+            lines[1] = `<u>${lines[1]}</u>`;
+        }
+		
+        if (lines[4]) {
+            lines[4] = `- <i>${lines[4]}</i>`;
+        }
+
+        const wrappedText = lines.map(line => `<p>${line}</p>`).join('');
+        
+        document.getElementById('post').innerHTML = wrappedText;
+    })
+    .catch(error => {
+        document.getElementById('post').innerText = error.message;
+    });
+
+
+</script>
+
+<a href="https://www.na.org">Copyright (c)
+                2007-2023,&nbsp; NA World Services, Inc. All Rights Reserved </a><br><br>
+-> <a href="/recovery">
+     <u>Back to Recovery Portal</u>
+    </a> <-<br><br>
+[<a href="/">
+      <img src="https://akai.gikopoi.com/image/wiz.png">
+    </a>]
+
+
+
+</main>
+</html>

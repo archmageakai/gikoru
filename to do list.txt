@@ -1,0 +1,36 @@
+=======================
+SCRIPTS RUN IN ORDER AS
+
+assure_public_reset.py
+move_static.py
+
+[MAIN INDEX]
+generate_home_list.py
+generate_home_index.py
+
+
+[EACH SECTIONS INDEX]
+generate_sections.py 
+generate_sections_list.py (fix so that pg.2, pg.3 have <h1>title</h1>
+generate_sections_index.py
+
+[SECTIONS PORTAL INDEX]
+generate_sectionsportal.py
+generate_sectionsportal_index.py
+
+[POST MAKER]
+content_maker.py
+content_merger.py
+
+[Generate other pages]
+generate_otherpages.py
+
+
+=======
+[CREATE POST]
+python newpost.py
+=======
+
+>>>>>> IDEAS >>>>>>
+-Make a drafts folder, make it so that the draft file is generated at the beginning as DRAFT in line 1, any file with POST in line 1 is moved to posts folder
+this would be processed before POST MAKER part of code
