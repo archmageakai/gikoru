@@ -134,9 +134,9 @@ def generate_paginated_url_list(workfiles_dir, output_dir, posts_per_page=5):
 
 if __name__ == "__main__":
     # Directory containing the work files
-    workfiles_directory = os.path.expanduser("~/site/posts/")
+    workfiles_directory = os.path.expanduser("~/gikoru/posts/")
     # Output directory for paginated pages
-    output_directory = os.path.expanduser("~/site/pg/index")
+    output_directory = os.path.expanduser("~/gikoru/pg/index")
 
     # Generate the paginated URL list
     generate_paginated_url_list(workfiles_directory, output_directory)

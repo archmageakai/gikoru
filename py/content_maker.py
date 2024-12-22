@@ -101,10 +101,10 @@ def modify_html_files(input_directory, output_directory):
 
 if __name__ == "__main__":
     # Directory containing the original HTML files
-    input_directory = os.path.expanduser("~/site/posts")
+    input_directory = os.path.expanduser("~/gikoru/posts")
 
     # Directory to save the modified HTML files
-    output_directory = os.path.expanduser("~/site/pg/posts")
+    output_directory = os.path.expanduser("~/gikoru/pg/posts")
 
     print("Clearing output directory and modifying HTML files...")
     modify_html_files(input_directory, output_directory)

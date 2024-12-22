@@ -31,7 +31,7 @@ def clear_directory(directory_path):
 
 if __name__ == "__main__":
     # Directory to clear
-    target_directory = "~/site/public/"
+    target_directory = "~/gikoru/public/"
 
     print(f"Clearing contents of {target_directory}...")
     clear_directory(target_directory)

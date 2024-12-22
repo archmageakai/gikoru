@@ -91,14 +91,14 @@ def merge_html_files(sections_dir, base_files, output_dir):
 if __name__ == "__main__":
     # Base HTML files to combine with each page
     base_html_files = [
-        os.path.expanduser("~/site/pg/head.html"),
-        os.path.expanduser("~/site/pg/header.html"),
-        os.path.expanduser("~/site/pg/footer.html")
+        os.path.expanduser("~/gikoru/pg/head.html"),
+        os.path.expanduser("~/gikoru/pg/header.html"),
+        os.path.expanduser("~/gikoru/pg/footer.html")
     ]
     # Directory containing the section folders
-    sections_directory = os.path.expanduser("~/site/pg/sections/")
+    sections_directory = os.path.expanduser("~/gikoru/pg/sections/")
     # Output directory where merged HTML files will be saved
-    output_directory = os.path.expanduser("~/site/public/")
+    output_directory = os.path.expanduser("~/gikoru/public/")
 
     print("Starting the script...")
     # Merge HTML files from the sections directory and save to the output directory

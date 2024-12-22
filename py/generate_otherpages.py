@@ -58,11 +58,11 @@ def merge_pages_with_template(pages_dir, output_dir, head_file, header_file, foo
 
 if __name__ == "__main__":
     # Define paths
-    pages_directory = os.path.expanduser("~/site/pg/$$$pages/")  # Update this if needed
-    output_directory = os.path.expanduser("~/site/public/")  # Update this if needed
-    head_file_path = os.path.expanduser("~/site/pg/head.html")
-    header_file_path = os.path.expanduser("~/site/pg/header.html")
-    footer_file_path = os.path.expanduser("~/site/pg/footer.html")
+    pages_directory = os.path.expanduser("~/gikoru/pg/$$$pages/")  # Update this if needed
+    output_directory = os.path.expanduser("~/gikoru/public/")  # Update this if needed
+    head_file_path = os.path.expanduser("~/gikoru/pg/head.html")
+    header_file_path = os.path.expanduser("~/gikoru/pg/header.html")
+    footer_file_path = os.path.expanduser("~/gikoru/pg/footer.html")
 
     # Merge the pages with the template
     merge_pages_with_template(pages_directory, output_directory, head_file_path, header_file_path, footer_file_path)

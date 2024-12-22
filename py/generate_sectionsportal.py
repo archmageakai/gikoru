@@ -162,7 +162,7 @@ def generate_sections_portal(sections_dir, output_file, posts_per_page=5):
 
 if __name__ == "__main__":
     # Directory containing the section folders
-    sections_directory = os.path.expanduser("~/site/pg/sections/")
+    sections_directory = os.path.expanduser("~/gikoru/pg/sections/")
     # Path to the output index.html file
     output_path = os.path.join(sections_directory, "index.html")
 

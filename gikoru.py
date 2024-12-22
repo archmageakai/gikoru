@@ -9,7 +9,7 @@ def run_script(script_name):
         script_name (str): The name of the script to run.
     """
     try:
-        script_path = os.path.expanduser(f"~/site/py/{script_name}")
+        script_path = os.path.expanduser(f"~/gikoru/py/{script_name}")
         if os.path.exists(script_path):
             print(f"Running {script_name}...")
             subprocess.run(["python3", script_path], check=True)

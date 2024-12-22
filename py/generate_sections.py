@@ -87,9 +87,9 @@ def generate_section_files(input_dir, output_dir):
 
 if __name__ == "__main__":
     # Input directory containing the original HTML files
-    posts_directory = os.path.expanduser("~/site/posts/")
+    posts_directory = os.path.expanduser("~/gikoru/posts/")
     # Output directory for the new section folders and files
-    sections_directory = os.path.expanduser("~/site/pg/sections/")
+    sections_directory = os.path.expanduser("~/gikoru/pg/sections/")
 
     # Generate the section folders and files
     generate_section_files(posts_directory, sections_directory)

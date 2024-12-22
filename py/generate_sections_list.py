@@ -170,9 +170,9 @@ def generate_links_and_sort(input_dir, sections_dir, posts_per_page=5):
 
 if __name__ == "__main__":
     # Input directory containing the original HTML files
-    posts_directory = os.path.expanduser("~/site/posts/")  # Adjust as needed
+    posts_directory = os.path.expanduser("~/gikoru/posts/")  # Adjust as needed
     # Directory containing the section folders
-    sections_directory = os.path.expanduser("~/site/pg/sections/")  # Adjust as needed
+    sections_directory = os.path.expanduser("~/gikoru/pg/sections/")  # Adjust as needed
 
     print("Starting the script...")
     # Generate links and sort them with pagination

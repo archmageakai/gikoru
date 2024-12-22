@@ -53,10 +53,10 @@ def merge_individual_files(input_directory, output_directory, news_file):
 
         # Paths to the common HTML files
         common_files = [
-            os.path.expanduser("~/site/pg/head.html"),
-            os.path.expanduser("~/site/pg/header.html")
+            os.path.expanduser("~/gikoru/pg/head.html"),
+            os.path.expanduser("~/gikoru/pg/header.html")
         ]
-        footer_file = os.path.expanduser("~/site/pg/footer.html")
+        footer_file = os.path.expanduser("~/gikoru/pg/footer.html")
 
         # Loop through each individual HTML file in the input directory
         for filename in os.listdir(input_directory):
@@ -75,13 +75,13 @@ def merge_individual_files(input_directory, output_directory, news_file):
 
 if __name__ == "__main__":
     # Directory containing the individual HTML files
-    input_directory = os.path.expanduser("~/site/pg/index")
+    input_directory = os.path.expanduser("~/gikoru/pg/index")
 
     # Output directory for merged files
-    output_directory = os.path.expanduser("~/site/public")
+    output_directory = os.path.expanduser("~/gikoru/public")
 
     # Path to the news.html file
-    news_file = os.path.expanduser("~/site/pg/news.html")
+    news_file = os.path.expanduser("~/gikoru/pg/news.html")
 
     print("Merging individual HTML files with news.html insertion...")
     merge_individual_files(input_directory, output_directory, news_file)

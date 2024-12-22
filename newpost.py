@@ -2,16 +2,16 @@ import os
 
 def create_html_from_post():
     """
-    Reads content from ~/site/post.txt, creates an HTML document, and saves it in ~/site/.
+    Reads content from ~/gikoru/post.txt, creates an HTML document, and saves it in ~/gikoru/.
     """
     try:
         # Define paths
-        post_txt_path = os.path.expanduser("~/site/post.txt")
-        site_directory = os.path.expanduser("~/site/")
+        post_txt_path = os.path.expanduser("~/gikoru/post.txt")
+        site_directory = os.path.expanduser("~/gikoru/")
 
         # Check if post.txt exists
         if not os.path.exists(post_txt_path):
-            print("Error: ~/site/post.txt does not exist.")
+            print("Error: ~/gikoru/post.txt does not exist.")
             return
 
         # Read content from post.txt
@@ -34,7 +34,7 @@ def create_html_from_post():
             html_file.write(post_content)
 
         print(f"HTML file created: {output_file_path}")
-        print("Please move the file into ~/site/posts/ when the draft is ready to be posted, then run gikoru.py (´｡• ω •｡`)")
+        print("Please move the file into ~/gikoru/posts/ when the draft is ready to be posted, then run gikoru.py (´｡• ω •｡`)")
     except Exception as e:
         print(f"An error occurred: {e}")
 

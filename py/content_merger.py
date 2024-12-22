@@ -78,15 +78,15 @@ def merge_all_files(input_directory, output_directory, head_file, header_file, f
 
 if __name__ == "__main__":
     # Input directory containing individual HTML files
-    posts_directory = os.path.expanduser("~/site/pg/posts/")
+    posts_directory = os.path.expanduser("~/gikoru/pg/posts/")
 
     # Output directory for merged files
-    output_directory = os.path.expanduser("~/site/public/posts/")
+    output_directory = os.path.expanduser("~/gikoru/public/posts/")
 
     # Paths to the head, header, and footer HTML files
-    head_file = os.path.expanduser("~/site/pg/head.html")
-    header_file = os.path.expanduser("~/site/pg/header.html")
-    footer_file = os.path.expanduser("~/site/pg/footer.html")
+    head_file = os.path.expanduser("~/gikoru/pg/head.html")
+    header_file = os.path.expanduser("~/gikoru/pg/header.html")
+    footer_file = os.path.expanduser("~/gikoru/pg/footer.html")
 
     print("Merging individual files with head, header, and footer...")
     merge_all_files(posts_directory, output_directory, head_file, header_file, footer_file)

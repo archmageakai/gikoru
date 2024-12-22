@@ -40,8 +40,8 @@ def copy_static_to_public(static_dir, public_dir):
 
 if __name__ == "__main__":
     # Source and destination directories
-    static_directory = "~/site/static/"
-    public_directory = "~/site/public/"
+    static_directory = "~/gikoru/static/"
+    public_directory = "~/gikoru/public/"
 
     print(f"Copying contents from {static_directory} to {public_directory}...")
     copy_static_to_public(static_directory, public_directory)
