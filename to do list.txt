@@ -1,9 +1,13 @@
+nothin to do, hopefully.
+
+notes on scripts for author
 =======================
 all scripts housed in ~/gikoru/py/
 
 SCRIPTS RUN IN ORDER AS:
 
 assure_public_reset.py
+read_drafts.py
 move_static.py
 
 [MAIN INDEX]
@@ -20,7 +24,6 @@ generate_sectionsportal.py
 generate_sectionsportal_index.py
 
 [POST MAKER]
-read_drafts.py
 content_maker.py
 content_merger.py
 
