@@ -36,6 +36,10 @@ python newpost.py
 this would be processed before POST MAKER part of code
 
 -Make an atom feed
- *change it so that POSTS read 2024-12-08T21:33:19-05:00 and reads YYYY-MM-DD to format out as <time datetime="2024-12-08T21:33:19-05:00">December 8, 2024</time> on post (check if thats correct for EST time)
+ *change it so that POSTS read 2024-12-08T21:33:19-05:00 and reads YYYY-MM-DD to format out as <time datetime="2024-12-08T21:33:19-05:00">December 8, 2024</time> on post (check if thats correct for EST time) ************RFC3339 format
  *once thats functioning, make lists for atom based on INDEX and SECTION and sort by NEWEST TO OLDEST
  *then feed the lists into feed.atom file
+ 
+2024-11-25T01:26:49-05:00 --- post 1
+ 
+2024-12-08T21:33:19-05:00 --- post 2

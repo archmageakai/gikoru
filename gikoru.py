@@ -35,7 +35,8 @@ def run_all_scripts():
         "generate_home_index.py",
         "content_maker.py",
         "content_merger.py",
-        "generate_otherpages.py"
+        "generate_otherpages.py",
+        "atomizer.py"
 
     ]
     

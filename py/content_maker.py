@@ -1,5 +1,6 @@
 import os
 import shutil
+from datetime import datetime, timezone, timedelta
 
 def clear_output_directory(output_directory):
     """
@@ -12,12 +13,71 @@ def clear_output_directory(output_directory):
         shutil.rmtree(output_directory)
     os.makedirs(output_directory, exist_ok=True)
 
+def parse_rfc3339(date_str):
+    """
+    Parses a date string in RFC3339 format to a datetime object.
+
+    Args:
+        date_str (str): The RFC3339 date string.
+
+    Returns:
+        datetime: A datetime object with timezone information.
+    """
+    try:
+        # Handle 'Z' for UTC
+        if 'Z' in date_str:
+            date_str = date_str.replace('Z', '+00:00')
+        # Parse the datetime and offset
+        if '+' in date_str or '-' in date_str:
+            main_date, offset = date_str[:-6], date_str[-6:]
+            dt = datetime.strptime(main_date, "%Y-%m-%dT%H:%M:%S")
+            hours_offset = int(offset[1:3])
+            minutes_offset = int(offset[4:6])
+            delta = timedelta(hours=hours_offset, minutes=minutes_offset)
+            if offset[0] == '-':
+                delta = -delta
+            return dt.replace(tzinfo=timezone(delta))
+        else:
+            # Default to UTC if no offset is provided
+            return datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S").replace(tzinfo=timezone.utc)
+    except ValueError as e:
+        print(f"Error parsing RFC3339 date: {date_str} - {e}")
+        return None
+
+def convert_rfc3339_to_time_tag(date_str):
+    """
+    Converts a date string in RFC3339 format to a formatted <time> tag.
+
+    Args:
+        date_str (str): The RFC3339 date string.
+
+    Returns:
+        str: A <time> tag with both datetime and human-readable format.
+    """
+    date = parse_rfc3339(date_str)
+    if not date:
+        return "<time>Invalid Date</time>"
+
+    # Extract UTC offset
+    offset = date.utcoffset()
+    if offset:
+        hours_offset = int(offset.total_seconds() // 3600)
+        minutes_offset = abs(int((offset.total_seconds() % 3600) // 60))
+        utc_offset = f"UTC {hours_offset:+03}:{minutes_offset:02}"
+    else:
+        utc_offset = "UTC +00:00"
+
+    # Format the datetime attribute and human-readable text
+    datetime_attr = date.isoformat()
+    human_readable = date.strftime(f"%B %-d, %Y :: %H:%M [{utc_offset}]")
+    return f'<time datetime="{datetime_attr}">{human_readable}</time>'
+
 def modify_html_files(input_directory, output_directory):
     """
     Modify HTML files as per the requirements:
     - Delete LINE 1, LINE 3, LINE 4, and LINE 5.
     - Wrap LINE 3 in <h1> tags and place it in LINE 1.
-    - Wrap LINE 2 in <time> tags and place it in LINE 2.
+    - Convert RFC3339 date in LINE 2 to a <time> tag and place it in LINE 2.
     - Append a modified <div> block to the end of the file based on LINE 4 with formatted URL.
     - Wrap the entire content in <main> tags.
     - Convert uppercase characters in LINE 4 to lowercase for the URL.
@@ -64,8 +124,9 @@ def modify_html_files(input_directory, output_directory):
                 # Wrap LINE 3 in <h1> tags and place it in LINE 1
                 new_line_1 = f"<h1>{line_3}</h1>\n"
 
-                # Wrap LINE 2 in <time> tags and place it in LINE 2
-                new_line_2 = f"<time>{line_2}</time>\n"
+                # Convert RFC3339 LINE 2 to a <time> tag
+                time_tag = convert_rfc3339_to_time_tag(line_2)
+                new_line_2 = f"{time_tag}\n"
 
                 # Modify LINE 4 for the URL: Replace special characters and convert to lowercase
                 modified_line_4 = "".join(char_map.get(char, char) for char in line_4).lower()

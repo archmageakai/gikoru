@@ -30,7 +30,7 @@ def sanitize_filename(title):
 
 def parse_date(date_str):
     """
-    Parse a date string in the format 'Month Day, Year' into a datetime object.
+    Parse a date string in RFC3339 format into a datetime object.
 
     Args:
         date_str (str): The date string to parse.
@@ -39,7 +39,7 @@ def parse_date(date_str):
         datetime: The parsed datetime object.
     """
     try:
-        return datetime.strptime(date_str.strip(), '%B %d, %Y')
+        return datetime.fromisoformat(date_str.strip())
     except ValueError:
         return None  # Return None if the date format is invalid
 

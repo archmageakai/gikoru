@@ -12,10 +12,8 @@ def ensure_five_lines(url_list, posts_per_page=5):
     Returns:
         list: The list of URL links padded to ensure 5 lines with breaks.
     """
-    # Ensure there are exactly 5 lines by adding <br> after each URL and empty lines if needed
     while len(url_list) < posts_per_page:
         url_list.append('<br>\n')  # Add an empty line (break) to ensure 5 lines
-    
     return url_list
 
 def generate_paginated_url_list(workfiles_dir, output_dir, posts_per_page=5):
@@ -54,9 +52,9 @@ def generate_paginated_url_list(workfiles_dir, output_dir, posts_per_page=5):
                     # Ensure the file has enough lines
                     if len(lines) >= 3:
                         try:
-                            # Line 2 contains the date in the format 'Month Day, Year' (e.g., 'January 1, 2024')
+                            # Line 2 contains the date in RFC3339 format (e.g., '2024-11-25T01:26:49-05:00')
                             date_str = lines[1].strip()  # Date in line 2
-                            date = datetime.strptime(date_str, '%B %d, %Y')  # Parse the date
+                            date = datetime.fromisoformat(date_str)  # Parse the RFC3339 date
 
                             # Line 3 contains the link text (Title)
                             link_text = lines[2].strip()  # Title in line 3
@@ -75,68 +73,42 @@ def generate_paginated_url_list(workfiles_dir, output_dir, posts_per_page=5):
         # If there are 5 or fewer URLs, don't create pagination
         total_urls = len(url_list)
         if total_urls <= posts_per_page:
-            # If there are 5 or fewer URLs, just create index.html without pagination
             page_file = os.path.join(output_dir, "index.html")
             with open(page_file, 'w', encoding='utf-8') as outfile:
                 outfile.write('<main>\n')  # Start the <main> tag
-
-                # Write all the posts
                 page_links = [url for _, url in url_list]
                 page_links = ensure_five_lines(page_links, posts_per_page)
-
                 for link in page_links:
-                    outfile.write(link)  # Each URL will have a <br> after it
-
+                    outfile.write(link)
                 outfile.write('</main>\n')  # Close the <main> tag
-
             print(f"Generated {page_file} successfully with {total_urls} URL(s).")
         else:
-            # Split the list into pages for pagination
             total_pages = (total_urls + posts_per_page - 1) // posts_per_page
-
             for page in range(1, total_pages + 1):
-                # Determine the file name
-                if page == 1:
-                    page_file = os.path.join(output_dir, "index.html")
-                else:
-                    page_file = os.path.join(output_dir, f"pg{page}.html")
-
+                page_file = os.path.join(output_dir, "index.html" if page == 1 else f"pg{page}.html")
                 with open(page_file, 'w', encoding='utf-8') as outfile:
                     outfile.write('<main>\n')  # Start the <main> tag
-
-                    # Write posts for the current page
                     start_index = (page - 1) * posts_per_page
                     end_index = start_index + posts_per_page
                     page_links = [url for _, url in url_list[start_index:end_index]]
-
-                    # Ensure there are 5 lines on the page
                     page_links = ensure_five_lines(page_links, posts_per_page)
-
                     for link in page_links:
-                        outfile.write(link)  # Each URL will have a <br> after it
-
-                    # Add navigation bar
+                        outfile.write(link)
                     outfile.write('<div class="pagination">\n')
                     for p in range(1, total_pages + 1):
                         if p == page:
-                            outfile.write(f'[{p}] ')  # Current page is not clickable
+                            outfile.write(f'[{p}] ')
                         else:
                             link = "index.html" if p == 1 else f"pg{p}.html"
                             outfile.write(f'<a href="{link}">[{p}]</a> ')
                     outfile.write('\n</div>\n')
-
                     outfile.write('</main>\n')  # Close the <main> tag
-
             print(f"Paginated URL list generated successfully in {output_dir}.")
 
     except Exception as e:
         print(f"An error occurred: {e}")
 
 if __name__ == "__main__":
-    # Directory containing the work files
     workfiles_directory = os.path.expanduser("~/gikoru/posts/")
-    # Output directory for paginated pages
     output_directory = os.path.expanduser("~/gikoru/pg/index")
-
-    # Generate the paginated URL list
     generate_paginated_url_list(workfiles_directory, output_directory)
