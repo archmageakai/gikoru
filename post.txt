@@ -1,7 +1,0 @@
-+++++
-[INSERT DATE HERE, format January 1, 2024]
-[INSERT TITLE HERE]
-[INSERT SECTION TITLE HERE]
-+++++
-
-Post body goes here, use HTML noob

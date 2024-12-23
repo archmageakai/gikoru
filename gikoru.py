@@ -33,6 +33,7 @@ def run_all_scripts():
         "generate_sectionsportal_index.py",
         "generate_home_list.py",
         "generate_home_index.py",
+        "read_drafts.py",
         "content_maker.py",
         "content_merger.py",
         "generate_otherpages.py",
