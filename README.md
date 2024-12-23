@@ -35,4 +35,3 @@ I was inspired by the [Hugo software](https://gohugo.io/) [((github link))](http
 ### License
 
 Licensed under [Gikopoi's favorite license](https://github.com/153/goatse-license).\
-btw we are in non-compliance.
