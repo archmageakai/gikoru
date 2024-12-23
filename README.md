@@ -8,7 +8,7 @@ gikoru.py - run this to generate site\
 new_content.py - this will put an html file in drafts, edit your file in drafts, and when ready make line 1 read POST\
 www.py - akai uses this to move his public directory to ~/www , for his own purposes of push and pulling to deploy his site\
 to do list.txt - a to do list\
-README.md - you're reading it now\
+README.md - you're reading it now
 
 ### Directories explained
 
@@ -21,7 +21,7 @@ pg/sections/ : sections (incl. index) fragments are stored here (these may or ma
 posts : these are where all posts are stored. these can be edited after they've been sent here.\
 public : this is the output directory. all these files can be deployed to your site.\
 py : aside from the main script, content file and www python scripts, most python scripts for gikoru are stored here\
-static : all static files, such as images, favicon, css, misc that you do not want merged are stored here\
+static : all static files, such as images, favicon, css, misc that you do not want merged are stored here
 
 ### ramblings of a madman
 
