@@ -25,6 +25,7 @@ def run_all_scripts():
     """
     scripts = [
         "assure_public_reset.py",
+        "read_drafts.py",
         "move_static.py",
         "generate_sections.py",
         "generate_sections_list.py",
@@ -33,7 +34,6 @@ def run_all_scripts():
         "generate_sectionsportal_index.py",
         "generate_home_list.py",
         "generate_home_index.py",
-        "read_drafts.py",
         "content_maker.py",
         "content_merger.py",
         "generate_otherpages.py",
