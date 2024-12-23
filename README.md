@@ -4,11 +4,11 @@
 # Recommended to save Gikoru to your home directory
 
 ### Files in main directory
-gikoru.py - run this to generate site
-new_content.py - this will put an html file in drafts, edit your file in drafts, and when ready make line 1 read POST
-www.py - akai uses this to move his public directory to ~/www , for his own purposes of push and pulling to deploy his site
-to do list.txt - a to do list
-README.md - you're reading it now
+gikoru.py - run this to generate site\
+new_content.py - this will put an html file in drafts, edit your file in drafts, and when ready make line 1 read POST\
+www.py - akai uses this to move his public directory to ~/www , for his own purposes of push and pulling to deploy his site\
+to do list.txt - a to do list\
+README.md - you're reading it now\
 
 ### Directories explained
 
