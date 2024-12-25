@@ -4,7 +4,7 @@ from datetime import datetime
 
 def extract_metadata_from_html(file_path):
     """
-    Extract metadata (title, published date) from an HTML file.
+    Extract metadata (title, published date, and content from LINE 6 onward) from an HTML file.
 
     Args:
         file_path (str): Path to the HTML file.
@@ -16,15 +16,17 @@ def extract_metadata_from_html(file_path):
         with open(file_path, 'r', encoding='utf-8') as infile:
             lines = infile.readlines()
 
-        # Ensure the file has at least 3 lines to process
-        if len(lines) < 3:
+        # Ensure the file has at least 6 lines to process
+        if len(lines) < 6:
             print(f"Warning: {file_path} does not have enough lines and will be skipped.")
             return None
 
         # Extract metadata
         title = lines[2].strip()  # LINE 3
         published = lines[1].strip()  # LINE 2 (already in RFC3339 format)
-        summary = "...." if len(lines) < 4 else lines[3].strip()  # Optional summary (LINE 4 if exists)
+
+        # Extract content from LINE 6 onward
+        summary = "".join(lines[5:]).strip()  # Start from index 5 (LINE 6)
 
         return {
             "title": title,
