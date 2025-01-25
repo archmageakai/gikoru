@@ -4,12 +4,6 @@ import re
 def sanitize_directory_name(title):
     """
     Convert a title string into a valid folder name by replacing invalid characters with numbers.
-
-    Args:
-        title (str): The title to sanitize.
-
-    Returns:
-        str: A sanitized folder name.
     """
     char_map = {
         '?': '1',
@@ -30,39 +24,20 @@ def sanitize_directory_name(title):
 def extract_text_from_line(line):
     """
     Remove HTML tags from a line of text.
-
-    Args:
-        line (str): A line of HTML content.
-
-    Returns:
-        str: Text content without HTML tags.
     """
     return re.sub(r'<[^>]*>', '', line).strip()
 
 def ensure_five_lines(links, posts_per_page=5):
     """
     Ensure that there are exactly 5 lines on the page by adding empty lines if necessary.
-
-    Args:
-        links (list): List of HTML link strings.
-        posts_per_page (int): Number of posts per page (default is 5).
-    
-    Returns:
-        list: The list of links padded to ensure 5 lines.
     """
     while len(links) < posts_per_page:
         links.append('<br>\n')  # Add an empty line (break) to ensure 5 lines
-    
     return links
 
 def generate_sections_portal(sections_dir, output_file, posts_per_page=5):
     """
     Generate a portal index.html file that links to each section directory and handles pagination.
-
-    Args:
-        sections_dir (str): Path to the directory containing section folders.
-        output_file (str): Path to the output index.html file.
-        posts_per_page (int): Number of posts per page (default is 5).
     """
     try:
         if not os.path.exists(sections_dir):
@@ -125,16 +100,14 @@ def generate_sections_portal(sections_dir, output_file, posts_per_page=5):
 
                     # Add pagination navigation
                     page_file.write('<div class="pagination">\n')
-                    for p in range(1, total_pages + 1):
-                        if p == 1 and page != 1:
-                            # For the first page, link to index.html
-                            page_file.write(f'<a href="index.html">[{p}]</a> ')
-                        elif p == page:
-                            # For the current page, just display the page number (no link)
-                            page_file.write(f'[{p}] ')
-                        else:
-                            # For other pages, link to pg{p}.html
-                            page_file.write(f'<a href="pg{p}.html">[{p}]</a> ')
+                    pagination_lines = [
+                        ' '.join(
+                            f'[{"%02d" % p}]' if p == page else f'<a href="{"index.html" if p == 1 else f"pg{p}.html"}">[{"%02d" % p}]</a>'
+                            for p in range(i, min(i + 5, total_pages + 1))
+                        )
+                        for i in range(1, total_pages + 1, 5)
+                    ]
+                    page_file.write('<br>\n'.join(pagination_lines))
                     page_file.write('\n</div>\n')
 
                     page_file.write('</main>\n')

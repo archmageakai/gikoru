@@ -5,12 +5,6 @@ from datetime import datetime
 def sanitize_filename(title):
     """
     Convert a title string into a valid folder name by replacing invalid characters with numbers.
-
-    Args:
-        title (str): The title to sanitize.
-
-    Returns:
-        str: A sanitized folder name.
     """
     char_map = {
         '?': '1',
@@ -31,12 +25,6 @@ def sanitize_filename(title):
 def parse_date(date_str):
     """
     Parse a date string in RFC3339 format into a datetime object.
-
-    Args:
-        date_str (str): The date string to parse.
-
-    Returns:
-        datetime: The parsed datetime object.
     """
     try:
         return datetime.fromisoformat(date_str.strip())
@@ -46,11 +34,6 @@ def parse_date(date_str):
 def generate_links_and_sort(input_dir, sections_dir, posts_per_page=5):
     """
     Generate sorted links based on LINE 2 (date) and match LINE 4 with section directories.
-
-    Args:
-        input_dir (str): Path to the directory containing the input HTML files.
-        sections_dir (str): Path to the directory containing section folders.
-        posts_per_page (int): Number of posts per page (default is 5).
     """
     try:
         if not os.path.exists(input_dir) or not os.path.exists(sections_dir):
@@ -115,24 +98,11 @@ def generate_links_and_sort(input_dir, sections_dir, posts_per_page=5):
                         else:
                             page_file_path = os.path.join(section_path, f"pg{page}.html")
 
-                        # Read the original HTML file content (preserving the first line)
-                        with open(os.path.join(section_path, "index.html"), 'r', encoding='utf-8') as original_file:
-                            lines = original_file.readlines()
-
-                        # Extract LINE 2 from index.html (for the paginated pages)
-                        line_2 = lines[1].strip() if len(lines) > 1 else ""
-
                         # Write the page content
                         with open(page_file_path, 'w', encoding='utf-8') as page_file:
                             page_file.write('<main>\n')  # Start the <main> tag
 
-                            # Write the first line (wrapped in <h1> tags)
-                            page_file.write(f"<h1>{lines[0].strip()}</h1>\n")
-
-                            # Write LINE 2 extracted from index.html
-                            page_file.write(f"<h2>{line_2}</h2>\n")
-
-                            # Ensure there are always 5 lines (including blank lines)
+                            # Write the links for the current page
                             start_index = (page - 1) * posts_per_page
                             end_index = start_index + posts_per_page
                             page_links = section_links[start_index:end_index]
@@ -141,24 +111,18 @@ def generate_links_and_sort(input_dir, sections_dir, posts_per_page=5):
                             while len(page_links) < 5:
                                 page_links.append('<br>\n')
 
-                            # Write the links for the current page
                             page_file.writelines(page_links)
 
                             # Add pagination navigation
                             page_file.write('<div class="pagination">\n')
-                            for p in range(1, total_pages + 1):
-                                if total_pages == 1:
-                                    # No pagination needed if there is only one page
-                                    continue
-                                elif p == 1 and page != 1:
-                                    # For the first page, link to index.html
-                                    page_file.write(f'<a href="index.html">[{p}]</a> ')
-                                elif p == page:
-                                    # For the current page, just display the page number (no link)
-                                    page_file.write(f'[{p}] ')
-                                else:
-                                    # For other pages, link to pg{p}.html
-                                    page_file.write(f'<a href="pg{p}.html">[{p}]</a> ')
+                            pagination_lines = [
+                                ' '.join(
+                                    f'[{"%02d" % p}]' if p == page else f'<a href="{"index.html" if p == 1 else f"pg{p}.html"}">[{"%02d" % p}]</a>'
+                                    for p in range(i, min(i + 5, total_pages + 1))
+                                )
+                                for i in range(1, total_pages + 1, 5)
+                            ]
+                            page_file.write('<br>\n'.join(pagination_lines))
                             page_file.write('\n</div>\n')
 
                             page_file.write('</main>\n')  # Close the <main> tag
