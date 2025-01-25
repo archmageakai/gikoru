@@ -102,13 +102,16 @@ def generate_links_and_sort(input_dir, sections_dir, posts_per_page=5):
                         with open(page_file_path, 'w', encoding='utf-8') as page_file:
                             page_file.write('<main>\n')  # Start the <main> tag
 
+                            # Write the section title as <h1>
+                            page_file.write(f"<h1>{section_folder.replace('_', ' ').title()}</h1>\n")
+
                             # Write the links for the current page
                             start_index = (page - 1) * posts_per_page
                             end_index = start_index + posts_per_page
                             page_links = section_links[start_index:end_index]
 
                             # If fewer than 5 links, add blank lines
-                            while len(page_links) < 5:
+                            while len(page_links) < posts_per_page:
                                 page_links.append('<br>\n')
 
                             page_file.writelines(page_links)
@@ -117,7 +120,7 @@ def generate_links_and_sort(input_dir, sections_dir, posts_per_page=5):
                             page_file.write('<div class="pagination">\n')
                             pagination_lines = [
                                 ' '.join(
-                                    f'[{"%02d" % p}]' if p == page else f'<a href="{"index.html" if p == 1 else f"pg{p}.html"}">[{"%02d" % p}]</a>'
+                                    f'[{p:02d}]' if p == page else f'<a href="{"index.html" if p == 1 else f"pg{p}.html"}">[{p:02d}]</a>'
                                     for p in range(i, min(i + 5, total_pages + 1))
                                 )
                                 for i in range(1, total_pages + 1, 5)
