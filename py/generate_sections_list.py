@@ -116,17 +116,18 @@ def generate_links_and_sort(input_dir, sections_dir, posts_per_page=5):
 
                             page_file.writelines(page_links)
 
-                            # Add pagination navigation
-                            page_file.write('<div class="pagination">\n')
-                            pagination_lines = [
-                                ' '.join(
-                                    f'[{p:02d}]' if p == page else f'<a href="{"index.html" if p == 1 else f"pg{p}.html"}">[{p:02d}]</a>'
-                                    for p in range(i, min(i + 5, total_pages + 1))
-                                )
-                                for i in range(1, total_pages + 1, 5)
-                            ]
-                            page_file.write('<br>\n'.join(pagination_lines))
-                            page_file.write('\n</div>\n')
+                            # Add pagination navigation if more than one page
+                            if total_pages > 1:
+                                page_file.write('<div class="pagination">\n')
+                                pagination_lines = [
+                                    ' '.join(
+                                        f'[{p:02d}]' if p == page else f'<a href="{"index.html" if p == 1 else f"pg{p}.html"}">[{p:02d}]</a>'
+                                        for p in range(i, min(i + 5, total_pages + 1))
+                                    )
+                                    for i in range(1, total_pages + 1, 5)
+                                ]
+                                page_file.write('<br>\n'.join(pagination_lines))
+                                page_file.write('\n</div>\n')
 
                             page_file.write('</main>\n')  # Close the <main> tag
 
