@@ -13,30 +13,46 @@
 
 <main>
 
-<pre id="post"></pre>
+<span id="post"></span>
 
 <script>
+
 const today = new Date();
 const fileName = `${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}.txt`;
+
 const filePath = `/jft_txt/${fileName}`;
 
 fetch(filePath)
-    .then(response => response.ok ? response.text() : Promise.reject('not available'))
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('not available');
+        }
+        return response.text();
+    })
     .then(data => {
-
+	
         const modifiedText = data.replace(/Just for today/g, '<strong><u>Just for today</u></strong>');
+        
         const lines = modifiedText.split('\n');
+        
+		if (lines[1]) {
+            lines[1] = `<u>${lines[1]}</u>`;
+        }
+		
+        if (lines[4]) {
+            lines[4] = `- <i>${lines[4]}</i>`;
+        }
 
-        if (lines[1]) lines[1] = `<u>${lines[1]}</u>`;
-        if (lines[4]) lines[4] = `- <i>${lines[4]}</i>`;
-
-        document.getElementById('post').innerHTML = lines.join('\n');
+        const wrappedText = lines.map(line => `<p>${line}</p>`).join('');
+        
+        document.getElementById('post').innerHTML = wrappedText;
     })
     .catch(error => {
-        document.getElementById('post').textContent = error;
+        document.getElementById('post').innerText = error.message;
     });
-</script>
 
+
+</script>
 
 <a href="https://www.na.org">Copyright (c)
                 2007-2023,&nbsp; NA World Services, Inc. All Rights Reserved </a><br><br>
