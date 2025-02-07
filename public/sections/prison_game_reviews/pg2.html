@@ -29,10 +29,10 @@
 </header>
 <main>
 <h1>Prison Game Reviews</h1>
+- <a href="/posts/metroiddread.html">Metroid Dread [Game Review]</a><br>
 - <a href="/posts/hollowknight.html">Hollow Knight [Game Review]</a><br>
 - <a href="/posts/stardew1.5.4.html">Stardew Valley 1.5.4 [Game Review]</a><br>
 - <a href="/posts/pokemonshield.html">Pokemon Shield + Pokemon Shield Expansion Pass [Game review]</a><br>
-<br>
 <br>
 <div class="pagination">
 <a href="index.html">[01]</a> [02]
@@ -47,5 +47,36 @@
 ・　<a href="/recovery">Recovery Portal</a><br> 
 ・　<a href="/recovery/jft.html">JFT meditation</a><br>
 ・　<a href="http://play.gikopoi.com">play.gikopoi.com</a></p>
-
+<span id="clean-time"></span>
+<span id="release-time"></span>
+<script>
+        function timeSince(dateString) {
+            let startDate = new Date(dateString);
+            let currentDate = new Date();
+            
+            let years = currentDate.getFullYear() - startDate.getFullYear();
+            let months = currentDate.getMonth() - startDate.getMonth();
+            let days = currentDate.getDate() - startDate.getDate();
+            
+            if (days < 0) {
+                months--;
+                let previousMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+                days += previousMonth.getDate();
+            }
+            
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+			
+			let formatYears = String(years).padStart(2, '0');
+			let formatMonths = String(months).padStart(2, '0');
+			let formatDays = String(days).padStart(2, '0');
+            
+            return `${formatYears}Y${formatMonths}M${formatDays}D`;
+        }
+        
+        document.getElementById("clean-time").textContent = timeSince("2018-10-16") + " // ";
+		document.getElementById("release-time").textContent = timeSince("2024-10-25");
+</script>
 </footer>

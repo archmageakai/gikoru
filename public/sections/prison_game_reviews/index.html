@@ -29,11 +29,11 @@
 </header>
 <main>
 <h1>Prison Game Reviews</h1>
+- <a href="/posts/megadimensionneptuniavii.html">Megadimension Neptunia VII [Game Review]</a><br>
 - <a href="/posts/eastward.html">Eastward [Game Review]</a><br>
 - <a href="/posts/pokemonlegendsarceus.html">Pokemon Legends: Arceus [Game Review]</a><br>
 - <a href="/posts/coldsteeliv.html">The Legend of Heroes: Trails of Cold Steel IV [Game Review]</a><br>
 - <a href="/posts/coldsteeliii.html">The Legend of Heroes: Trails of Cold Steel III [Game Review]</a><br>
-- <a href="/posts/metroiddread.html">Metroid Dread [Game Review]</a><br>
 <div class="pagination">
 [01] <a href="pg2.html">[02]</a>
 </div>
@@ -47,5 +47,36 @@
 ・　<a href="/recovery">Recovery Portal</a><br> 
 ・　<a href="/recovery/jft.html">JFT meditation</a><br>
 ・　<a href="http://play.gikopoi.com">play.gikopoi.com</a></p>
-
+<span id="clean-time"></span>
+<span id="release-time"></span>
+<script>
+        function timeSince(dateString) {
+            let startDate = new Date(dateString);
+            let currentDate = new Date();
+            
+            let years = currentDate.getFullYear() - startDate.getFullYear();
+            let months = currentDate.getMonth() - startDate.getMonth();
+            let days = currentDate.getDate() - startDate.getDate();
+            
+            if (days < 0) {
+                months--;
+                let previousMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+                days += previousMonth.getDate();
+            }
+            
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+			
+			let formatYears = String(years).padStart(2, '0');
+			let formatMonths = String(months).padStart(2, '0');
+			let formatDays = String(days).padStart(2, '0');
+            
+            return `${formatYears}Y${formatMonths}M${formatDays}D`;
+        }
+        
+        document.getElementById("clean-time").textContent = timeSince("2018-10-16") + " // ";
+		document.getElementById("release-time").textContent = timeSince("2024-10-25");
+</script>
 </footer>
