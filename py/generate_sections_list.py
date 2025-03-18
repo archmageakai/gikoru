@@ -31,7 +31,7 @@ def parse_date(date_str):
     except ValueError:
         return None  # Return None if the date format is invalid
 
-def generate_links_and_sort(input_dir, sections_dir, posts_per_page=5):
+def generate_links_and_sort(input_dir, sections_dir, posts_per_page=10):
     """
     Generate sorted links based on LINE 2 (date) and match LINE 4 with section directories.
     """
@@ -66,7 +66,7 @@ def generate_links_and_sort(input_dir, sections_dir, posts_per_page=5):
                                 # Prepare the link with date for sorting
                                 link = {
                                     'date': date,
-                                    'link': f'- <a href="/posts/{filename}">{link_text}</a><br>\n',
+                                    'link': f'<div class="blog_item">- <a href="/posts/{filename}">{link_text}</a></div>\n',
                                     'title': section_title
                                 }
                                 all_links.append((date, link))  # Store the link with its date
@@ -103,7 +103,9 @@ def generate_links_and_sort(input_dir, sections_dir, posts_per_page=5):
                             page_file.write('<main>\n')  # Start the <main> tag
 
                             # Write the section title as <h1>
-                            page_file.write(f"<h1>{section_folder.replace('_', ' ').title()}</h1>\n")
+                            page_file.write(f"♡ <br>\n<strong>{section_folder.replace('_', ' ').title()}</strong>\n ✧*｡٩(－ω－*)و✧*｡<br><img src=\"/image/wiz.png\"</img><br>")
+
+                            page_file.write('<div class="blog-list">\n') 
 
                             # Write the links for the current page
                             start_index = (page - 1) * posts_per_page
@@ -113,6 +115,8 @@ def generate_links_and_sort(input_dir, sections_dir, posts_per_page=5):
                             # If fewer than 5 links, add blank lines
                             while len(page_links) < posts_per_page:
                                 page_links.append('<br>\n')
+                            
+                            page_file.write('</div>\n')
 
                             page_file.writelines(page_links)
 
@@ -128,6 +132,10 @@ def generate_links_and_sort(input_dir, sections_dir, posts_per_page=5):
                                 ]
                                 page_file.write('<br>\n'.join(pagination_lines))
                                 page_file.write('\n</div>\n')
+
+                            # Add a <br> if there's no pagination
+                            if total_pages == 1:
+                                page_file.write('<br>\n')
 
                             page_file.write('</main>\n')  # Close the <main> tag
 

@@ -122,7 +122,7 @@ def modify_html_files(input_directory, output_directory):
                 line_4 = lines[3].strip()  # Original LINE 4
 
                 # Wrap LINE 3 in <h1> tags and place it in LINE 1
-                new_line_1 = f"<h1>{line_3}</h1>\n"
+                new_line_1 = f"♡ <br><strong><u>{line_3}</u></strong><br>\n"
 
                 # Convert RFC3339 LINE 2 to a <time> tag
                 time_tag = convert_rfc3339_to_time_tag(line_2)
