@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	<link rel="alternate" type="application/atom+xml" href="/index.atom" title="akai.gikopoi.com">
+
+    <title>ギコっぽいの赤いネス</title>
+
+</head>
+<body>
+<header>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding:2px">
+<tr>
+              <td style="line-height:12pt; height:10px;"><span class="pagetop">
+				<a href="/"><img src="/image/home.png" title="Home"></a>
+				<a href="/sections"><img src="/image/blog.png" title="Sections"></a>
+				<a href="/friends.html"><img src="/image/tomodachi.png" title="Friends"></a>
+				<a href="/contact.html"><img src="/image/contact.png" title="Contact me"></a>
+</span>
+</td></tr>
+</table>
+
+</header>
+<style>
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+ul li {
+  position: relative;
+  padding-left: 1.5em;
+}
+
+ul li::before {
+  content: "♡";
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.indent {
+  padding-left: 2em;
+  display: block;
+  font-size: 0.85em;
+}
+</style>
+
+<main>
+♡ <br>
+<strong>friends</strong> ✧*｡٩(－ω－*)و✧*｡<br>
+<img src="/image/wiz.png"</img><br>
+
+From people to concepts to communities, this page captures the collection of the secret geniuses hidden from society, only to remain available in secrete and in rarity.<br><br>
+
+<u>Gikoverse</u>
+
+<ul>
+  
+  <li><a href="https://play.gikopoi.com" target="_blank">Play Gikopoi</a>
+  <li><a href="https://gikopoi.com" target="_blank">Homepage</a> 
+  <li><a href="https://bbs.gikopoi.com" target="_blank">BBS</a>
+  <li><a href="https://wiki.gikopoi.com" target="_blank">Wiki</a>
+  <li><a href="https://booru.gikopoi.com" target="_blank">Booru</a>
+  <li><a href="https://events.gikopoi.com/" target="_blank">Events</a>
+</ul>
+
+<u>People</u>
+
+<ul>
+  <li><a href="https://4x13.net">52</a>
+  <li><a href="https://meltingwax.net">MeltingWax</a>
+</ul>
+
+<u>Community</u>
+
+<ul>
+  <li><a href="https://sageru.org/" target="_blank">6ch</a>
+  <span class="indent">SAGERU BUZZ BUZZ@@@@@@@@@@@@@@@@</span>
+</ul>
+
+<u>Music</u>
+
+<ul>
+  <li><a href="https://applecamp.bandcamp.com"
+	 target="_blank">Applecamp records</a>
+	 <span class="indent">WE LUV APPLECAMP @@@@@@@@@@@@@@@@</span>
+</ul>
+
+<u>Repo</u>
+
+<ul>
+  <li><a href="https://github.com/153/gikopoi3"
+	 target="_blank">gikopoi3</a> 
+	 <span class="indent">gikopoi3 fork</span>
+  <li><a href="https://github.com/153/giko.py/"	
+	 target="_blank">giko.py bot</a> 
+	 <span class="indent">giko.py chatbot from gikopoi</span>
+  <li><a href="https://github.com/archmageakai/akai.py"
+	 target="_blank">akai.py bot</a> 
+	 <span class="indent">giko.py chatbot fork</span>
+  <li><a href="https://github.com/archmageakai/gikoru"
+         target="_blank">gikoru</a> 
+	  <span class="indent">static site/blog generator for/by akai</span>
+  <li><a href="https://github.com/archmageakai/www"
+         target="_blank">www</a> 
+	  <span class="indent">this website's src</span>
+</ul>
+</main>
+</body>
+
+<footer>
+
+<p>
+♡ ♡ ♡<br>
+<strong> WE LOVE APPLECAMP </strong><br>
+<i>new release!</i><br>
+synthetic collapse project demo<br>
+[ <a href="https://applecamp.bandcamp.com/album/akai-the-archmage-x-uxsxoxtxlxsxfx-synthetic-collapse-project-demo">download here</a> ]<br>
+♡ ♡ ♡<br><br>
+---<br>
+・　<a href="/recovery">Recovery Portal</a><br> 
+・　<a href="/recovery/jft.html">JFT meditation</a><br>
+</p>
+<span id="clean-time"></span>
+<span id="release-time"></span>
+<script>
+        function timeSince(dateString) {
+            let startDate = new Date(dateString);
+            let currentDate = new Date();
+            
+            let years = currentDate.getFullYear() - startDate.getFullYear();
+            let months = currentDate.getMonth() - startDate.getMonth();
+            let days = currentDate.getDate() - startDate.getDate();
+            
+            if (days < 0) {
+                months--;
+                let previousMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+                days += previousMonth.getDate();
+            }
+            
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+			
+			let formatYears = String(years).padStart(2, '0');
+			let formatMonths = String(months).padStart(2, '0');
+			let formatDays = String(days).padStart(2, '0');
+            
+            return `${formatYears}Y${formatMonths}M${formatDays}D`;
+        }
+        
+        document.getElementById("clean-time").textContent = timeSince("2018-10-16") + " // ";
+		document.getElementById("release-time").textContent = timeSince("2024-10-25");
+</script>
+</footer>
+</html>
