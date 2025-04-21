@@ -10,7 +10,7 @@ def sanitize_directory_name(title):
         '/': '6', '\\': '7', '|': '8', '*': '9', ' ': '_'
     }
     sanitized = ''.join(char_map.get(char, char) for char in title)
-    sanitized = re.sub(r'[^\w\d_]', lambda match: str(ord(match.group(0))), sanitized)
+    sanitized = re.sub(r"[^\w\d\-_']", lambda match: str(ord(match.group(0))), sanitized)
     return sanitized.lower()
 
 def extract_text_from_line(line):
@@ -83,24 +83,62 @@ def generate_sections_portal(sections_dir, output_file, posts_per_page=10):
                 for link in page_links:
                     page_file.write(f'{link}\n')
 
-                # Add pagination navigation
+                # Add pagination navigation with sliding window
                 if total_pages > 1:
                     page_file.write('<div class="pagination">\n')
-                    pagination_lines = [
-                        ' '.join(
-                            f'[{"%02d" % p}]' if p == page else f'<a href="{"index.html" if p == 1 else f"pg{p}.html"}">[{"%02d" % p}]</a>'
-                            for p in range(i, min(i + 5, total_pages + 1))
-                        )
-                        for i in range(1, total_pages + 1, 5)
-                    ]
-                    page_file.write('<br>\n'.join(pagination_lines))
-                    page_file.write('\n</div>\n')
 
-                # If there is only one page and no pagination, add an extra <br>
-                if total_pages == 1:
-                    page_file.write('<br>\n')
+                    # Navigation arrows
+                    if page > 1:
+                        page_file.write(f'<a href="index.html">[&laquo;]</a> ')
+                        prev_page = "index.html" if page - 1 == 1 else f"pg{page - 1}.html"
+                        page_file.write(f'<a href="{prev_page}">[&lsaquo;]</a> ')
+                    else:
+                        page_file.write('[&laquo;] [&lsaquo;] ')
 
-                page_file.write('</div>\n')
+                    # Sliding window logic for page numbers
+                    if total_pages <= 5:
+                        block_start = 1
+                        block_end = total_pages
+                    else:
+                        if page <= 3:
+                            block_start = 1
+                            block_end = 5
+                        elif page >= total_pages - 2:
+                            block_start = total_pages - 4
+                            block_end = total_pages
+                        else:
+                            block_start = page - 2
+                            block_end = page + 2
+
+                    # Render the page number links
+                    for p in range(block_start, block_end + 1):
+                        if p == page:
+                            page_file.write(f'[{p:02d}] ')
+                        else:
+                            page_url = "index.html" if p == 1 else f"pg{p}.html"
+                            page_file.write(f'<a href="{page_url}">[{p:02d}]</a> ')
+
+                    """
+                    #Experimental
+                    # blanks
+                    if total_pages < 5:
+                        for _ in range(5 - total_pages):
+                            page_file.write('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+                    """
+
+                    # Navigation arrows
+                    if page < total_pages:
+                        next_page = f"pg{page + 1}.html"
+                        last_page = f"pg{total_pages}.html"
+                        page_file.write(f'<a href="{next_page}">[&rsaquo;]</a> ')
+                        page_file.write(f'<a href="{last_page}">[&raquo;]</a>')
+                    else:
+                        page_file.write('[&rsaquo;] [&raquo;]')
+
+                    page_file.write('</div>\n')
+                else:
+                    page_file.write('<br>')
+
                 page_file.write('</main>\n')
 
             print(f"Generated page {page_file_path} with {len(page_links)} links")

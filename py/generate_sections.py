@@ -12,6 +12,7 @@ def sanitize_filename(title):
     Returns:
         str: A sanitized folder name.
     """
+    # Dictionary of specific characters to replace
     char_map = {
         '?': '1',
         '>': '2',
@@ -24,8 +25,14 @@ def sanitize_filename(title):
         '*': '9',
         ' ': '_'
     }
+
+    # Replace characters defined in the char_map
     sanitized = ''.join(char_map.get(char, char) for char in title)
-    sanitized = re.sub(r'[^\w\d_]', lambda match: str(ord(match.group(0))), sanitized)
+
+    # Replace all remaining invalid characters except apostrophe with their ASCII value
+    sanitized = re.sub(r"[^\w\d_'-]", lambda match: str(ord(match.group(0))), sanitized)
+    
+    # Return the sanitized folder name in lowercase
     return sanitized.lower()
 
 def clear_and_create_directory(directory):

@@ -1,15 +1,6 @@
 # GIKORU !!!!
 ![](https://booru.gikopoi.com/_images/1675480a36b6a1c8cbb815a1fa9fd93b/184%20-%20gikoru.png)
 
-# Recommended to save Gikoru to your home directory
-
-### Files in main directory
->gikoru.py - run this to generate site\
->new_content.py - this will put an html file in drafts, edit your file in drafts, and when ready make line 1 read POST\
->www.py - akai uses this to move his public directory to ~/www , for his own purposes of push and pulling to deploy his site\
->to do list.txt - a to do list\
->README.md - you're reading it now
-
 ### Directories explained
 
 >drafts : this folder is is where drafts are stored, new_content.py sends files here.\
@@ -20,7 +11,6 @@
 >pg/sections/ : sections (incl. index) fragments are stored here (these may or may not be treated as temp files that would be deleted later)\
 >posts : these are where all posts are stored. these can be edited after they've been sent here.\
 >public : this is the output directory. all these files can be deployed to your site.\
->py : aside from the main script, content file and www python scripts, most python scripts for gikoru are stored here\
 static : all static files, such as images, favicon, css, misc that you do not want merged are stored here
 
 ### ramblings of a madman
@@ -34,4 +24,4 @@ I was inspired by the [Hugo software](https://gohugo.io/) [((github link))](http
 
 ### License
 
-Licensed under [Gikopoi's favorite license](https://github.com/153/goatse-license).\
+Licensed under [Gikopoi's favorite license](https://github.com/153/goatse-license).

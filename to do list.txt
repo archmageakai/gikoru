@@ -1,6 +1,34 @@
---- Make Pages print out as:
-[1] [2] [3] [4] [5]
-[6] [7] [8] [9] [10]
+# major update in the works
+Goal: Big cleanup. Create one file main script gikoru.py that can generate everything, rather than use other scripts that use the same functions.
+
+### Variables:
+- directories for:
+    1. Home/webpage index 
+    2. Sections index
+    3. Each Sections index
+    4. Page titles (by utilizing HTML files)
+
+### Functions
+- Ensure X amount of lines on page
+- Pagination
+- Alphabetical sorter function for sections index
+- Merging Head/header/main/footer
+
+### Notes for order in main
+        "assure_public_reset.py",
+        "read_drafts.py",
+        "generate_sections.py",
+        "generate_sections_list.py",
+        "generate_sections_index.py",
+        "generate_sectionsportal.py",
+        "generate_sectionsportal_index.py",
+        "generate_home_list.py",
+        "generate_home_index.py",
+        "content_maker.py",
+        "content_merger.py",
+        "generate_otherpages.py",
+        "move_static.py",
+        "atomizer.py"
 
 -------------------------------
 

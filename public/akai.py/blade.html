@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	
+    <title>ギコっぽいの赤いネス</title>
+	
+<style>
+
+/* gachapon css start */
+
+table, th, td {
+    border: 1px solid #ff0000 !important;
+}
+
+thead {
+    background-color: #333333; /* Dark gray background */
+    color: #ff0000;  /* Red text color for the header */
+}
+
+th {
+    padding: 10px;
+    text-align: left;
+    vertical-align: middle;
+    color: #ff0000;  /* Ensure text color is red */
+}
+
+/* Rest of your existing CSS */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ff0000;
+    padding: 10px;
+    text-align: left;
+    vertical-align: middle;
+    color: #ff0000;  /* Red text color */
+}
+
+/* Square image cell */
+.image-cell {
+    width: 60px;  /* Set square size */
+    height: 60px; 
+    text-align: center;
+}
+
+/* Square images */
+.image-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensures image fits without distortion */
+    display: block;
+}
+
+/* Rarity colors */
+.rarity5star { color: purple; font-weight: bold; }
+.rarity4star { color: gold; font-weight: bold; }
+.rarity3star { color: silver; }
+.rarity2star { color: red; }
+.rarity1star { color: red; }
+
+<---
+/* Highlight class */
+.highlight { background-color: maroon; }
+
+--->
+
+/* Link styles */
+.show-all-link {
+    color: maroon;
+    text-decoration: none;
+    display: block;
+    margin-top: 20px;
+}
+
+/* Button styling */
+button {
+    font-size: 16px;
+    color: #ff0000; /* Red text color */
+    font-family: "Lucida Console", "Courier New", monospace;
+    background-color: #333333; /* Dark gray background */
+    border: 1px solid #ff0000; /* Red border */
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: #ff0000; /* Red background on hover */
+    color: #ffffff; /* White text on hover */
+}
+
+/* Active button state (when the sorting button is clicked) */
+button.active {
+    background-color: #ff0000; /* Red background for active button */
+    color: #ffffff; /* White text for active button */
+    border: 1px solid #ff0000; /* Red border */
+}
+
+/* gachapon css end*/
+    </style>
+	
+</head>
+<body>
+	<h1 id="pageTitle">Blade Codex</h1>
+
+<div>
+	<button onclick="sortBladesAlphabetically()">Sort Alphabetically</button>
+    <button onclick="sortBladesByRarity()">Sort by Rarity</button>
+    
+<!--   <button onclick="sortItemsByID()">Sort by ID</button> -->
+</div>
+
+<table id="itemTable">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Item</th>
+        </tr>
+    </thead>
+    <tbody id="itemTableBody">
+    </tbody>
+</table>
+
+<br>
+<center>
+<a href="javascript:void(0);" id="showAllLink" class="show-all-link" style="display:none;" onclick="showAllBlades()">Show All Blades</a>
+</center>
+
+
+<script>
+let blades = [];
+let sortOrderRarity = true;
+let sortOrderAlphabetical = true;
+let sortOrderID = true;
+
+async function loadBlades() {
+    try {
+        const timestamp = new Date().getTime();
+        const response = await fetch(`blade.json?timestamp=${timestamp}`);
+        if (!response.ok) {
+            throw new Error("Failed to load blade.json");
+        }
+        const jsonData = await response.json();
+        blades = jsonData.blades;
+
+        checkURLHash();
+        hideButtonsIfNeeded();
+    } catch (error) {
+        console.error("Error loading blades:", error);
+        document.getElementById("itemTableBody").innerHTML = "<tr><td colspan='2'>Failed to load blades.</td></tr>";
+    }
+}
+
+function getStarRepresentation(rarity) {
+    const stars = {
+        "5-star": "★★★★★",
+        "4-star": "★★★★",
+        "3-star": "★★★",
+        "2-star": "★★",
+        "1-star": "★"
+    };
+    return stars[rarity] || rarity;
+}
+
+function formatRarityClass(rarity) {
+    return `rarity${rarity.replace("-", "")}`;
+}
+
+function displayBlades(blades) {
+    const tableBody = document.getElementById("itemTableBody");
+    tableBody.innerHTML = "";
+
+    blades.forEach(blade => {
+        const row = document.createElement("tr");
+        row.id = blade.blade_ID;
+
+        const imgCell = document.createElement("td");
+        imgCell.classList.add("image-cell");
+        const img = document.createElement("img");
+        img.src = `/images/akai.py/${blade.blade_ID}.png`;
+        img.alt = "img";
+        imgCell.appendChild(img);
+
+        const bladeCell = document.createElement("td");
+        let rarityText = getStarRepresentation(blade.Rarity);
+
+        bladeCell.innerHTML = `
+            <strong class="${formatRarityClass(blade.Rarity)}">${blade.blade_name} (${rarityText})</strong><br>
+            ${blade.Type} [${blade.Element}]<br>
+            <small>${blade.description}</small><br>
+			[${blade.Stats}]
+        `;
+
+        const moreLink = document.createElement("a");
+        moreLink.href = `#${blade.blade_ID}`;
+        moreLink.innerText = "[more here]";
+
+        bladeCell.appendChild(moreLink);
+
+        row.appendChild(imgCell);
+        row.appendChild(bladeCell);
+        tableBody.appendChild(row);
+    });
+}
+
+function displaySingleBlade(bladeId) {
+    const tableBody = document.getElementById("itemTableBody");
+    tableBody.innerHTML = "";
+
+    const blade = blades.find(blade => blade.blade_ID === bladeId);
+    if (blade) {
+        const row = document.createElement("tr");
+        row.id = blade.blade_ID; 
+
+        const imgCell = document.createElement("td");
+        imgCell.classList.add("image-cell");
+        const img = document.createElement("img");
+        img.src = `/images/akai.py/${blade.blade_ID}.png`;
+        img.alt = blade.blade_name;
+        imgCell.appendChild(img);
+
+        const bladeCell = document.createElement("td");
+        let rarityText = getStarRepresentation(blade.Rarity);
+        bladeCell.innerHTML = `<strong class="${formatRarityClass(blade.Rarity)}">${blade.blade_name} (${rarityText})</strong><br>
+		${blade.Type} [${blade.Element}]<br>
+		<small>${blade.description}</small><br>
+		[${blade.Stats}]`;
+
+        row.appendChild(imgCell);
+        row.appendChild(bladeCell);
+        tableBody.appendChild(row);
+
+        row.classList.add("highlight");
+
+        document.getElementById("pageTitle").textContent = `Blade ID: ${blade.blade_ID}`;
+    } else {
+        displayBladeNotFound();
+    }
+}
+
+function displayBladeNotFound() {
+    const tableBody = document.getElementById("itemTableBody");
+
+    tableBody.innerHTML = "";
+
+    const row = document.createElement("tr");
+
+    const imgCell = document.createElement("td");
+    imgCell.classList.add("image-cell");
+
+    const bladeCell = document.createElement("td");
+    bladeCell.colSpan = "2";
+    bladeCell.style.textAlign = "center";
+    bladeCell.textContent = "Blade not found";
+
+    row.appendChild(imgCell);
+    row.appendChild(bladeCell);
+
+    tableBody.appendChild(row);
+    
+    document.getElementById("pageTitle").textContent = `Error`;
+}
+
+function checkURLHash() {
+    const hash = window.location.hash.substring(1);
+
+    if (hash) {
+
+        const bladeId = parseFloat(hash);
+        const blade = blades.find(blade => blade.blade_ID === bladeId);
+
+        if (blade) {
+            
+            displaySingleBlade(blade.blade_ID);
+            document.querySelectorAll('button').forEach(button => button.style.display = 'none');
+            document.getElementById("showAllLink").style.display = "block"; 
+        } else {
+            
+            displayBladeNotFound();
+            document.querySelectorAll('button').forEach(button => button.style.display = 'none');
+            document.getElementById("showAllLink").style.display = "block";
+        }
+    } else {
+        
+        displayBlades(blades);
+        document.querySelectorAll('button').forEach(button => button.style.display = 'inline-block');
+        document.getElementById("showAllLink").style.display = "none";
+    }
+}
+
+function showAllBlades() {
+    window.location.hash = '';
+    displayBlades(blades);
+    document.getElementById("showAllLink").style.display = "none";
+    
+    document.getElementById("pageTitle").textContent = "Blade List";
+}
+
+function hideButtonsIfNeeded() {
+    const hash = window.location.hash;
+    if (hash === "#1") {
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(button => button.style.display = 'none');
+    }
+}
+
+let alphabeticalFirstClick = true; 
+let rarityFirstClick = true;
+
+function sortBladesByRarity() {
+    if (rarityFirstClick) {
+        rarityFirstClick = false; // *
+        blades.sort((a, b) => {
+            const rarityOrder = { "5-star": 5, "4-star": 4, "3-star": 3, "2-star": 2, "1-star": 1 };
+            return rarityOrder[b.Rarity] - rarityOrder[a.Rarity];
+        });
+    } else {
+        rarityFirstClick = true; // *
+        blades.reverse();
+    }
+    
+    alphabeticalFirstClick = true; // *
+    displayBlades(blades);
+}
+
+function sortBladesAlphabetically() {
+    if (alphabeticalFirstClick) {
+        alphabeticalFirstClick = false; // *
+        blades.sort((a, b) => a.blade_name.localeCompare(b.blade_name));
+    } else {
+        alphabeticalFirstClick = true; // *
+        blades.reverse();
+    }
+
+    rarityFirstClick = true; // *
+    displayBlades(blades);
+}
+
+window.onload = function() {
+    loadBlades();
+    checkURLHash();
+    hideButtonsIfNeeded();
+};
+
+window.onhashchange = function () {
+    location.reload();
+};
+</script>
+</body>
+</html>

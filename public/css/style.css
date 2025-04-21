@@ -36,6 +36,11 @@ a {
   text-decoration: none;
 }
 
+code {
+  color: #000000;
+  background-color: #ff6347;
+}
+
 hr {
   border: none;
   text-align: center;
