@@ -87,13 +87,16 @@ def generate_sections_portal(sections_dir, output_file, posts_per_page=10):
                 if total_pages > 1:
                     page_file.write('<div class="pagination">\n')
 
-                    # Navigation arrows
+                    # Navigation arrows - L
                     if page > 1:
-                        page_file.write(f'<a href="index.html">[&laquo;]</a> ')
                         prev_page = "index.html" if page - 1 == 1 else f"pg{page - 1}.html"
+
+                        if page > 2:
+                            page_file.write(f'<a href="index.html">[&laquo;]</a> ')
+                        
                         page_file.write(f'<a href="{prev_page}">[&lsaquo;]</a> ')
                     else:
-                        page_file.write('[&laquo;] [&lsaquo;] ')
+                        page_file.write('') #[&laquo;] [&lsaquo;] ---> blank
 
                     # Sliding window logic for page numbers
                     if total_pages <= 5:
@@ -126,12 +129,14 @@ def generate_sections_portal(sections_dir, output_file, posts_per_page=10):
                             page_file.write('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
                     """
 
-                    # Navigation arrows
+                    # Navigation arrows - R
                     if page < total_pages:
                         next_page = f"pg{page + 1}.html"
-                        last_page = f"pg{total_pages}.html"
                         page_file.write(f'<a href="{next_page}">[&rsaquo;]</a> ')
-                        page_file.write(f'<a href="{last_page}">[&raquo;]</a>')
+
+                        if page + 1 < total_pages:
+                            last_page = f"pg{total_pages}.html"
+                            page_file.write(f'<a href="{last_page}">[&raquo;]</a>')
                     else:
                         page_file.write('[&rsaquo;] [&raquo;]')
 

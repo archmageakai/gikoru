@@ -70,13 +70,16 @@ def generate_paginated_url_list(workfiles_dir, output_dir, posts_per_page=10):
                 if total_pages > 1:
                     outfile.write('<div class="pagination">\n')
 
-                # Navigation arrows
+                # Navigation arrows - L
                 if page > 1:
-                    outfile.write(f'<a href="index.html">[&laquo;]</a> ')
                     prev_page = "index.html" if page - 1 == 1 else f"pg{page - 1}.html"
+
+                    if page > 2:
+                        outfile.write(f'<a href="index.html">[&laquo;]</a> ')
+                        
                     outfile.write(f'<a href="{prev_page}">[&lsaquo;]</a> ')
                 else:
-                    outfile.write('[&laquo;] [&lsaquo;] ')
+                    outfile.write('') #[&laquo;] [&lsaquo;]  now blank
 
                 # Page number group (5-page block)
                 # Sliding window logic for page numbers
@@ -108,14 +111,16 @@ def generate_paginated_url_list(workfiles_dir, output_dir, posts_per_page=10):
                         outfile.write('&nbsp;&nbsp;&nbsp;&nbsp;')
                 """
                 
-                # Navigation arrows
+                # Navigation arrows - R
                 if page < total_pages:
                     next_page = f"pg{page + 1}.html"
-                    last_page = f"pg{total_pages}.html"
                     outfile.write(f'<a href="{next_page}">[&rsaquo;]</a> ')
-                    outfile.write(f'<a href="{last_page}">[&raquo;]</a>')
+
+                    if page + 1 < total_pages:
+                        last_page = f"pg{total_pages}.html"
+                        outfile.write(f'<a href="{last_page}">[&raquo;]</a>')
                 else:
-                    outfile.write('[&rsaquo;] [&raquo;]')
+                    outfile.write('') #[&rsaquo;] [&raquo;]  now blank
 
                 outfile.write('\n</div>\n')
 
