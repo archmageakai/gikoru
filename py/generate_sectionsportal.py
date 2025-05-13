@@ -138,7 +138,7 @@ def generate_sections_portal(sections_dir, output_file, posts_per_page=10):
                             last_page = f"pg{total_pages}.html"
                             page_file.write(f'<a href="{last_page}">[&raquo;]</a>')
                     else:
-                        page_file.write('[&rsaquo;] [&raquo;]')
+                        page_file.write('') # [&rsaquo;] [&raquo;] 
 
                     page_file.write('</div>\n')
                 else:
