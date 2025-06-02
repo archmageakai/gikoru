@@ -17,6 +17,8 @@ html_content = f"""DRAFT
 {current_time}
 [Please write title here for this line]
 [Please write section for this line]
+----Style: "black & red"----
+<link rel="stylesheet" type="text/css" href="css/style.css">
 +++++
 
 <p>POST BODY GOES HERE</p>
