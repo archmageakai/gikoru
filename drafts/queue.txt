@@ -1,0 +1,19 @@
+queue:
+-Xenoblade Chronicles 3
+-Hades
+-Dead Cells
+-Fire Emblem Three Houses
+-Fire Emblem Warriors: Three Hopes
+-The Legend of Zelda: Breath of the Wild
+-The Legend of Zelda: Tears of the Kingdom
+-Pokemon Scarlet / Violet
+-Hyrule Warriors: age of calamity
+-Dragon quest 11
+-Astral Chain
+-13 Sentinels: Aegis Rim
+-Persona 5 Strikers
+-Final Fantasy XII The Zodiac Age
+
+other
+-RPG Maker MV
+-KORG Gadgets

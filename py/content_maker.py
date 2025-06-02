@@ -103,6 +103,8 @@ def modify_html_files(input_directory, output_directory):
     # Clear the output directory
     clear_output_directory(output_directory)
 
+    style_num = 8
+    
     try:
         # Loop through each HTML file in the input directory
         for filename in os.listdir(input_directory):
@@ -112,7 +114,7 @@ def modify_html_files(input_directory, output_directory):
                     lines = infile.readlines()
 
                 # Ensure the file has at least 5 lines to process
-                if len(lines) < 5:
+                if len(lines) < style_num:
                     print(f"Warning: {filename} does not have enough lines and will be skipped.")
                     continue
 
@@ -140,13 +142,13 @@ def modify_html_files(input_directory, output_directory):
     </ul>
 </div>
 """
-
+                
+                
                 # Combine the modified content:
                 # 1. Add new Line 1 and Line 2.
                 # 2. Include remaining lines except original Lines 3, 4, and 5.
                 # 3. Append the new <div> block.
-                modified_content = [new_line_1, new_line_2] + lines[5:] + [new_div_block]
-
+                modified_content = [new_line_1, new_line_2] + lines[style_num:] + [new_div_block]
                 # Wrap the entire content in <main> tags
                 wrapped_content = ["<main>\n"] + modified_content + ["</main>\n"]
 
