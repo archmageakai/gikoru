@@ -113,7 +113,7 @@ def modify_html_files(input_directory, output_directory):
                 with open(file_path, 'r', encoding='utf-8') as infile:
                     lines = infile.readlines()
 
-                # Ensure the file has at least 5 lines to process
+                # Ensure the file has at least "style_num" lines to process
                 if len(lines) < style_num:
                     print(f"Warning: {filename} does not have enough lines and will be skipped.")
                     continue

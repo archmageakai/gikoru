@@ -14,23 +14,37 @@ for filename in os.listdir(drafts_dir):
     
     # Check if it's a file (skip directories)
     if os.path.isfile(file_path):
-        with open(file_path, 'r') as file:
-            lines = file.readlines()
+        with open(file_path, 'r', encoding='utf-8') as file:
+            content = file.read()
         
         # Check if the first line is "POST"
-        if lines and lines[0].strip() == "POST":
-            # Remove the first line (which is "POST")
-            lines.pop(0)
+        if content.startswith("POST"):
+            # Remove lines based on lin_del
+            lin_del = 2
+            content = content.split('\n', lin_del)[lin_del]
+
+            end = "</head>"
+            end_index = content.find(end)
+            if end_index != -1:
+                content = content[:end_index].rstrip() + "\n"
+            
+            """
+            # Remove everything after the AUTO-REMOVED marker
+            marker = "<!-- *** AUTO-REMOVED  *** -->"
+            marker_index = content.find(marker)
+            if marker_index != -1:
+                content = content[:marker_index].rstrip() + "\n"
+            """
             
             # Define the new file path in the posts directory
             new_file_path = os.path.join(posts_dir, filename)
-            
+
             # Write the modified content to the new file in the posts directory
-            with open(new_file_path, 'w') as file:
-                file.writelines(lines)
+            with open(new_file_path, 'w', encoding='utf-8') as file:
+                file.write(content)
             
             # Remove the original file from the drafts directory
             os.remove(file_path)
-            
+
             # Print confirmation message
-            print(f"Moved and modified: {filename} -> {new_file_path}")
+            print(f"Moved and cleaned: {filename} -> {new_file_path}")

@@ -1,4 +1,4 @@
-<html lang="en-us" dir="ltr">
+<html>
 <head>
 
     <meta charset="utf-8">
@@ -17,10 +17,10 @@
 
 <script>
 
-const today = new Date();
-const fileName = `${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}.txt`;
+  const today = new Date();
+  const fileName = `${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}.txt`;
 
-const filePath = `/recovery/jft_txt/${fileName}`;
+  const filePath = `/recovery/jft_txt/${fileName}`;
 
 fetch(filePath)
     .then(response => {
@@ -30,21 +30,32 @@ fetch(filePath)
         return response.text();
     })
     .then(data => {
-	
-        const modifiedText = data.replace(/Just for today/g, '<strong><u>Just for today</u></strong>');
-        
-        const lines = modifiedText.split('\n');
-        
-		if (lines[1]) {
+        const lines = data.split('\n');
+
+        // Line 1 (underline)
+        if (lines[1]) {
             lines[1] = `<u>${lines[1]}</u>`;
         }
-		
+
+        // Line 4 (italic with dash)
         if (lines[4]) {
             lines[4] = `- <i>${lines[4]}</i>`;
         }
 
+        // Find last non-empty line and underline "Just for today"
+        let lastIndex = lines.length - 1;
+        while (lastIndex >= 0 && lines[lastIndex].trim() === '') {
+            lastIndex--;
+        }
+
+        if (lastIndex >= 0) {
+            lines[lastIndex] = lines[lastIndex].replace(/^(Just for today)(:)?/, '<strong><u>$1</u></strong>$2');
+        }
+
+        // Wrap each line in a <p>
         const wrappedText = lines.map(line => `<p>${line}</p>`).join('');
-        
+
+        // Display in DOM
         document.getElementById('post').innerHTML = wrappedText;
     })
     .catch(error => {

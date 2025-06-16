@@ -1,3 +1,7 @@
+:root {
+  --line: url("/image/brsred.png");
+}
+
 body {
   color: #ff0000;
   background-color: #000000;
@@ -22,13 +26,22 @@ p, center, main {
 } 
 
 header {
-  border-top: 1px solid #ff0000;
-  border-bottom: 1px solid #ff0000;
+  background-image: var(--line), var(--line);
+  background-repeat: repeat-x, repeat-x;
+  background-position: top, bottom;
+  background-size: auto, auto;
+  padding-top: 5px;
+  padding-bottom: 2px;
 }
 
 footer {
-  border-top: 1px solid #ff0000;
+  background-image: var(--line), var(--line);
+  background-repeat: repeat-x, repeat-x;
+  background-position: top, bottom;
+  background-size: auto, auto;
   margin-top: 1rem;
+  padding-top: 1px;
+  padding-bottom: 1px;
 }
 
 a {
@@ -38,7 +51,7 @@ a {
 
 code {
   color: #000000;
-  background-color: #ff6347;
+  background-color: #ff0000;
 }
 
 hr {

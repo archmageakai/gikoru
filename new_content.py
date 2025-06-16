@@ -11,8 +11,9 @@ os.makedirs(output_dir, exist_ok=True)
 
 file_path = os.path.join(output_dir, f"{filename}.html")
 
-# post body 
-html_content = f"""DRAFT
+# Use raw f-string (fr"""...""") and double curly braces in JS code
+html_content = fr"""DRAFT
+<head><meta charset="UTF-8">Meta-data loaded for live-server
 +++++
 {current_time}
 [Please write title here for this line]
@@ -21,7 +22,9 @@ html_content = f"""DRAFT
 <link rel="stylesheet" type="text/css" href="css/style.css">
 +++++
 
-<p>POST BODY GOES HERE</p>
+<p>Body</p>
+
+</head>
 """
 
 with open(file_path, 'w') as file:

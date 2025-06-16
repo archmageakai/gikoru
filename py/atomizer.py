@@ -5,6 +5,7 @@ from datetime import datetime
 def extract_metadata_from_html(file_path):
     """
     Extract metadata (title, published date, and content from LINE 6 onward) from an HTML file.
+    Removes lines containing just '+++++' or the stylesheet link.
     """
     try:
         with open(file_path, 'r', encoding='utf-8') as infile:
@@ -16,7 +17,20 @@ def extract_metadata_from_html(file_path):
 
         title = lines[2].strip()       # LINE 3
         published = lines[1].strip()   # LINE 2 (must already be RFC-3339)
-        content = "".join(lines[5:]).strip()  # From LINE 6 onward
+
+        raw_content_lines = lines[5:]  # From LINE 6 onward
+
+        # Filter out lines that are just '+++++' or contain the stylesheet link
+        filtered_lines = []
+        for line in raw_content_lines:
+            stripped = line.strip()
+            if stripped == "+++++":
+                continue
+            if '<link rel="stylesheet" type="text/css" href="css/style.css">' in stripped:
+                continue
+            filtered_lines.append(line)
+
+        content = "".join(filtered_lines).strip()
 
         return {
             "title": title,
@@ -80,7 +94,7 @@ def generate_atom_feed(input_directory, output_path, feed_metadata):
                 entry_id = f"https://akai.gikopoi.com/posts/{filename}"
                 entries.append({
                     "title": metadata["title"],
-                    "link": f"/posts/{filename}",
+                    "link": f"https://akai.gikopoi.com/posts/{filename}",
                     "published": metadata["published"],
                     "updated": metadata["published"],
                     "id": entry_id,

@@ -5,6 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link id="theme-link" rel="stylesheet" />
+<script>
+  const themeLink = document.getElementById('theme-link');
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+      themeLink.href = savedTheme;
+  } else {
+      themeLink.href = 'style.css';
+  }
+</script>
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 	<link rel="alternate" type="application/atom+xml" href="/index.atom" title="akai.gikopoi.com">
@@ -12,6 +22,7 @@
     <title>ギコっぽいの赤いネス</title>
 
 </head>
+
 <body>
 <header>
 
@@ -30,36 +41,83 @@
 
 </header>
 <style>
-th {
-   text-align: left;
+.contact-table tr:nth-of-type(2n) td {
+  padding-bottom: 1em;
+}
 </style>
-
 <main>
 ♡ <br>
 <strong>contact me</strong> ✧*｡٩(－ω－*)و✧*｡<br>
 <img src="/image/wiz.png"</img><br>
-    <table>
-<tr><th>E-mail:
-    <td><a href="mailto:akai@gikopoi.com">akai@gikopoi.com</a>
-<tr><th>XMPP:
-    <td><a href="xmpp:akai@gikopoi.com?message">akai@gikopoi.com</a>
-<tr><th>IRC/rizon:
-    <td><a href="https://rizon.net/info/access">/whois archmage_akai</a>
-<tr><th>Discord:
-    <td><a href="discord://discord.com/users/1296570056536363152">@archmageakai</a>
-<tr><th>Fediverse:
-    <td><a href="https://fsebugoutzone.org/akai">@akai@fsebugoutzone.org</a>
-<tr><th>Steam:
-    <td><a href="https://steamcommunity.com/id/archmageakai">id/archmageakai</a>    
-<tr><th>Git:
-    <td><a href="https://github.com/archmageakai">github/archmageakai</a>
-<tr><th>Nexus Mods:
-    <td><a href="https://next.nexusmods.com/profile/archmageakai">profile/archmageakai</a>
+<table class="contact-table">
+  <tr>
+    <td colspan="2"><strong class="label"><u>E-mail</u>:</strong> <a href="mailto:akai@gikopoi.com">akai@gikopoi.com</a></td>
+  </tr>
+  <tr>
+    <td colspan="2">I never reply to mail from this address, but this is possibly a good spot for love/hate mail.</td>
+  </tr>
+
+  <tr>
+    <td colspan="2"><strong class="label"><u>XMPP</u>:</strong> <a href="xmpp:akai@gikopoi.com?message">akai@gikopoi.com</a></td>
+  </tr>
+  <tr>
+    <td colspan="2">Use OMEMO encryption if possible. This is my preferred method of communicating 1 to 1.</td>
+  </tr>
+
+  <tr>
+    <td colspan="2"><strong class="label"><u>IRC/rizon</u>:</strong> <a href="https://rizon.net/info/access">/whois archmage_akai</a></td>
+  </tr>
+  <tr>
+    <td colspan="2">Idle most of the time. Mention me in #gikopoi or use /msg.</td>
+  </tr>
+
+  <tr>
+    <td colspan="2"><strong class="label"><u>Fediverse</u>:</strong> <a href="https://fsebugoutzone.org/akai">@akai@fsebugoutzone.org</a></td>
+  </tr>
+  <tr>
+    <td colspan="2">Decentralized social stuff. Mostly rodent posting. Alt: <a href="https://clubcyberia.co/users/Akaines">@Akaines@clubcyberia.co</a></td>
+  </tr>
+
+  <tr>
+    <td colspan="2"><strong class="label"><u>Git</u>:</strong> <a href="https://github.com/archmageakai">github/archmageakai</a></td>
+  </tr>
+  <tr>
+    <td colspan="2">All my projects are free code up for grabs.</td>
+  </tr>
+
+  <tr>
+    <td colspan="2"><strong class="label"><u>Steam</u>:</strong> <a href="https://steamcommunity.com/id/archmageakai">id/archmageakai</a></td>
+  </tr>
+  <tr>
+    <td colspan="2">I rarely game or use this for communication, but I put it here anyway.</td>
+  </tr>
+  
+  <tr>
+    <td colspan="2"><strong class="label"><u>Nexus Mods</u>:</strong> <a href="https://next.nexusmods.com/profile/archmageakai">profile/archmageakai</a></td>
+  </tr>
+  <tr>
+    <td colspan="2">Had some plans to write some mods for Stardew Valley. This is mostly abandoned, but maybe there is some glimmer of hope that I actually make a mod and post it here.</td>
+  </tr>
+  
+  <tr>
+    <td colspan="2"><strong class="label"><u>Gikopoi & Anon/jp-boards</u></strong></td>
+  <tr>
+    <td colspan="2"><code>Akai◆giko//JRnk</code> is the tag I use on Gikopoi and "jp-styled" boards or anywhere that allows tripcode. On Pohon BBS, I might write without it to start general threads or track data, but otherwise take anything under the Akai name with a grain of salt unless it is with that tag or confirmed to be me, by me. Use your deductive reasoning and your own mind to decide what you want to believe too.</td>
+  </tr>
+
+  
+  <tr>
+    <td colspan="2"><strong class="label"><del>Discord:</del></strong> <del>@archmageakai</del></td>
+  </tr>
+  <tr>
+    <td colspan="2">Abandoned for numerous reasons. I never really liked this client, and all of the people I frequently contact can be contacted otherwise. Having no use for the program, I got rid of it. I can delve into this more, but there are enough articles across the net explaining why you <i>should not</i> use Discord..</td>
+  </tr>
 </table>
 
 <img src="/image/phone.png"</img>
 
 </main>
+
 </body>
 
 <footer>
@@ -125,3 +183,4 @@ document.getElementById("release-time").textContent = timeSince("2024-10-25");
 <p>[<i>Generated by <a href="https://github.com/archmageakai/gikoru">Gikoru</a>!</i>]</p>
 </footer>
 </html>
+
