@@ -1,5 +1,4 @@
 queue:
--Xenoblade Chronicles 3
 -Hades
 -Dead Cells
 -Fire Emblem Three Houses
