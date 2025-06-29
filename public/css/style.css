@@ -1,0 +1,158 @@
+body {
+  color: #ff0000;
+  background-color: #000000;
+  font-family: "Lucida Console", "Courier New", monospace;
+  line-height: 1.5;
+  margin: 0;
+  padding: 1rem;
+  max-width: 700px;
+}
+
+p, center, main {
+  font-size: 13px;
+}
+
+.content {  
+  margin-bottom: 2rem;  
+}  
+
+small {
+  color: #FF0000;
+}
+
+.navbar {
+  display: flex;  
+  align-items: center;  
+} 
+
+footer {
+  background-image: var(--line), var(--line);
+  background-repeat: repeat-x, repeat-x;
+  background-position: top, bottom;
+  background-size: auto, auto;
+  margin-top: 1rem;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+a {
+  text-decoration: underline;
+  text-decoration-color: #800000;
+  color: #c7c7c7;
+}
+
+.pagination a {
+  background-color: #333; /* grey background always */
+  color: #FFFFFF;            /* maroon text */
+  text-decoration: none;
+  padding: 0.2em 0.4em;
+}
+
+code {
+  color: #000000;
+  background-color: #ff0000;
+}
+
+hr {
+  color: #ff0000;
+  max-width: 700px;
+}
+
+.blog_item {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* ... */
+  width: 100%;
+  display: block;
+}
+
+@media (max-width: 700px) {}
+
+
+.blog-header {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: #333;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+.top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.left-group {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.side-gif {
+  width: 32px;
+  height: auto;
+}
+
+
+.site-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin: 0;
+  color: #ff0000;
+  white-space: nowrap;
+}
+
+
+.feed-icon {
+  height: 1em;
+  margin-left: auto; /* pushes it to the right */
+}
+
+/* Default layout: flex for wider screens */
+.nav-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  font-size: 0.9rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #555;
+  justify-content: start;
+}
+
+/* Nav link style */
+.nav-bar a {
+  color: white;
+  text-decoration: underline;
+  text-decoration-color: red;
+  white-space: nowrap;
+}
+
+.blog-footer {
+  max-width: 700px;
+  margin: 1rem auto 0 auto;
+  background-color: #333; /* same dark gray as header */
+  border-radius: 4px;
+  padding: 1rem;
+  font-size: 13px;
+  color: #c7c7c7;
+  line-height: 1.6;
+}
+
+.blog-footer a {
+  color: #FFFFFF;
+  text-decoration: underline;
+  text-decoration-color: #FF0000;
+}
+
+/* Grid layout with 3 links per row on small screens */
+@media (max-width: 600px) {
+  .nav-bar {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 0.5em 1em; /* row gap and column gap */
+  }
+
+  
+}

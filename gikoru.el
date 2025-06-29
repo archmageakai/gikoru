@@ -120,42 +120,6 @@
           (delete-file merged-path)
           (message "Exported %s" html-path))))))
 
-
-;; (defun gikoru--export-posts ()
-;;   (unless (file-directory-p gikoru-output-posts-dir)
-;;     (make-directory gikoru-output-posts-dir t))
-;;   (dolist (orgfile (directory-files gikoru-posts-dir t "\\.org$"))
-;;     (let* ((meta (gikoru--extract-post-meta orgfile)))
-;;       (when meta ;; Only if it’s public
-;;         (let* ((title (plist-get meta :title))
-;;                (time (plist-get meta :time))
-;;                (section (or (plist-get meta :section) "Null"))
-;;                (section-link (format "<p>:: <a href=\"/sections/%s\">%s</a></p>\n"
-;; 				     (gikoru--sanitize-section-name section)
-;; 				     section))
-;;                (header-html (gikoru--format-post-header title time))
-;;                (raw-body (gikoru--read-file orgfile))
-;;                (enhanced-body
-;;                 (format gikoru-export-posts-header
-;;                         header-html
-;;                         (concat raw-body "\n\n#+BEGIN_EXPORT html\n" section-link "#+END_EXPORT")))
-;;                (merged-content (gikoru--merge-org-content enhanced-body))
-;;                (basename (file-name-base orgfile))
-;;                (merged-path (expand-file-name (concat basename "-merged.org") gikoru-output-posts-dir))
-;;                (html-path (expand-file-name (concat basename ".html") gikoru-output-posts-dir)))
-;;           ;; Write merged org file
-;;           (with-temp-file merged-path
-;;             (insert merged-content))
-;;           ;; Export to HTML
-;;           (with-current-buffer (find-file-noselect merged-path)
-;;             (org-html-export-to-html nil nil nil t)
-;;             (let ((exported-html (concat (file-name-sans-extension merged-path) ".html")))
-;;               (rename-file exported-html html-path t))
-;;             (kill-buffer))
-;;           ;; Delete merged org file
-;;           (delete-file merged-path)
-;;           (message "Exported %s" html-path))))))
-
 (defun gikoru--extract-post-meta (file)
   (with-temp-buffer
     (insert-file-contents file)

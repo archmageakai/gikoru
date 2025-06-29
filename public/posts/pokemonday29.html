@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" href="/index.atom" title="akai.gikopoi.com">
+
+  <title>AKAI</title>
+  
+</head>
+
+<header class="blog-header">
+  <div class="top-row">
+    <div class="left-group">
+      <img src="/image/redhamster.gif" alt=":3" class="side-gif">
+      <h1 class="site-title">Akai</h1>
+    </div>
+    <a href="/index.atom">
+    <img src="/image/rss.svg" alt="Feed" class="feed-icon">
+    </a>
+  </div>
+  <nav class="nav-bar">
+    <a href="/index.html">Main</a>
+    <a href="/sections">Sections</a>
+    <a href="/archive">Archive</a>
+    <a href="/portal.html">Portal</a>
+    <a href="/friends.html">Friends</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+</header>
+
+<p><small><time datetime="2025-02-26T18:49:26-05:00">2025-02-26 :: 18:49 [UTC -05:00]</time></small><br>
+
+                          <strong><u>Pokemon Day Japan 29 Years</u></strong></p>
+
+<main>
+<p><i>Happy Pokemon Day!</i></p>
+<p><u>2/27/96</u> - <i>Pokemon Red and Green</i> were released for Gameboy in Japan.</p>
+<p>These games were not localized and released (under Red and Blue titles in the West) until later, but it is this day that we celebrate the birth of a franchise that changed a lot of our lives. These are not necessarily the greatest in the core series by far, but they set the stage. I have my criticisms with the direction of the newer titles, but this article is more about nostalgia and giving thanks to 29 years of Pokemon. Today, there is still much to enjoy in the new of the series and a lot of the old worth exploring and re-exploring.</p>
+<p>My first adventure in Pokemon was Blue version, and I chose Squirtle as my starter. I was very drawn to water types as a kid, as I really enjoyed the color blue mostly. My favorite game of all time is Crystal version. I love all the regions of Pokemon. I enjoy seeing the new monsters, even if I don't exactly enjoy a game. I am thankful that Pokemon is still relevant today, and that I get to have fun with my friends just talking about Pokemon. The fact that Pokemon is a conversation topic and that it isn't pushed to the side like so many other series; it truly is a blessing. Currently, I am playing a Crystal romhack titled Pokemon Crystal Legacy, which stays true to the core of the game while adding conveniences for playing single-player on an emulator. I often stream Pokemon Crystal Legacy on gikopoi, and am currently in the post-credits part of the game hopping between Kanto and Johto (just got the magnet train unlocked). I am also re-playing Pokemon Black.</p>
+<p>Pokemon is part of my life, and I will not be surprised to see Pokemon on my way out of this life. While I am reluctant to buy or support some of the future directions of the series, I will not say that I am going to close myself out entirely. I will be keeping aware of the new generations, and play the games when I can. Pokemon has brought a lot of great people and things into my life, and I will always be happy to share that experience with anyone. I hope you guys enjoyed this session of Game Corner topics, as I'll be talking about my thoughts about news or just simple reflections on games/series I really enjoy. It was an honor to have Pokemon Day be the start of a new topic here on the blog.</p>
+
+</main>
+<p>:: <a href="/sections/game-corner">Game Corner</a></p>
+
+<footer class="blog-footer">
+
+  <p>
+<a href="https://applecamp.bandcamp.com"><img src="/image/applecamp.png" /><br>
+    grindcore by chinchillas</a>
+♡<br>
+</p>
+
+<p>
+<span id="clean-time"></span>
+<span id="release-time"></span>
+
+<script>
+function parseDateInEST(dateString) {
+    let parts = dateString.split("-");
+    let utcDate = new Date(Date.UTC(parts[0], parts[1] - 1, parts[2], 5)); 
+    return new Date(utcDate.toLocaleString("en-US", { timeZone: "America/New_York" }));
+}
+
+function getTodayInEST() {
+    let now = new Date();
+    let estString = now.toLocaleString("en-US", { timeZone: "America/New_York" });
+    let estDate = new Date(estString);
+    return new Date(estDate.getFullYear(), estDate.getMonth(), estDate.getDate());
+}
+
+function timeSince(dateString) {
+    let startDate = parseDateInEST(dateString);
+    let currentDate = getTodayInEST();
+
+    let years = currentDate.getFullYear() - startDate.getFullYear();
+    let months = currentDate.getMonth() - startDate.getMonth();
+    let days = currentDate.getDate() - startDate.getDate();
+
+    if (days < 0) {
+        months--;
+        let previousMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+        days += previousMonth.getDate();
+    }
+
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    let formatYears = String(years).padStart(2, '0');
+    let formatMonths = String(months).padStart(2, '0');
+    let formatDays = String(days).padStart(2, '0');
+
+    return `${formatYears}Y${formatMonths}M${formatDays}D`;
+}
+
+document.getElementById("clean-time").textContent = timeSince("2018-10-16") + " // ";
+document.getElementById("release-time").textContent = timeSince("2024-10-25");
+</script><br> <a href="/recovery/jft.html">Just For Today</a></p>
+
+
+<p>This site is <a href="https://github.com/archmageakai/www">free and open-source</a> and freely generated by <a href="https://github.com/archmageakai/gikoru">Gikoru</a>.<br>
+Powered by GNU Emacs and Org mode.</p>
+
+<p><a href="https://play.gikopoi.com">play.gikopoi.com</a></p>
+</footer>
