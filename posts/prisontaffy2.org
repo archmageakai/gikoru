@@ -1,0 +1,10 @@
+#+POST-TITLE: Prison Taffy - Extra approach
+#+TIME: 2025-03-20T20:15:28-04:00
+#+SECTION: Prison Food
+#+PUBLIC: YES
+
+#+BEGIN_EXPORT html
+<p><img src="https://booru.gikopoi.com/_images/2abe7973f2bfdc2102716720cf948808/258%20-%20akai%20candy%20food%20oc%20photo%20prison%20taffy.jpg" style="max-width: 100%; height: auto;"><br><br>
+You might have enjoyed my <a href="/posts/prisontaffy.html">previous article</a> on Prison Taffy and how to make it. This article is more about showing a way I get creative with the taffy, because candy is always great to be colorful and stylish. In the picture above, I made two new flavors: Strawberry and Orange. I roll part of each flavor separately and make "Taffy twists" or you can also mix pieces to have a mixed ball of flavor like shown above. Periodically, I'll be showing ways I get creative with taffy as I come up with more ideas. This was something very common in prison, and I'd love to explore more ways to expand on Prison Taffy now that I'm out here.
+</p>
+#+END_EXPORT

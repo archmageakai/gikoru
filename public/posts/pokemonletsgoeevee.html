@@ -1,48 +1,44 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
+
 <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <link id="theme-link" rel="stylesheet" />
-<script>
-  const themeLink = document.getElementById('theme-link');
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme) {
-      themeLink.href = savedTheme;
-  } else {
-      themeLink.href = 'style.css';
-  }
-</script>
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-	<link rel="alternate" type="application/atom+xml" href="/index.atom" title="akai.gikopoi.com">
+    <link rel="alternate" type="application/atom+xml" href="/index.atom" title="akai.gikopoi.com">
 
-    <title>ギコっぽいの赤いネス</title>
-
+  <title>AKAI</title>
+  
 </head>
 
-<body>
-<header>
-
-<table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding:2px">
-<tr>
-              <td style="line-height:12pt; height:10px;"><span class="pagetop">
-				<a href="/"><img src="/image/home.png" title="Home"></a>
-				<a href="/sections"><img src="/image/blog.png" title="Sections"></a>
-				<a href="/archive"><img src="/image/archive.png" title="Archive"></a>
-				<a href="/portal.html"><img src="/image/portal.png" title="Portal"></a>
-				<a href="/friends.html"><img src="/image/tomodachi.png" title="Friends"></a>
-				<a href="/contact.html"><img src="/image/contact.png" title="Contact me"></a>
-</span>
-</td></tr>
-</table>
-
+<header class="blog-header">
+  <div class="top-row">
+    <div class="left-group">
+      <img src="/image/redhamster.gif" alt=":3" class="side-gif">
+      <h1 class="site-title">Akai</h1>
+    </div>
+    <a href="/index.atom">
+    <img src="/image/rss.svg" alt="Feed" class="feed-icon">
+    </a>
+  </div>
+  <nav class="nav-bar">
+    <a href="/index.html">Main</a>
+    <a href="/sections">Sections</a>
+    <a href="/archive">Archive</a>
+    <a href="/portal.html">Portal</a>
+    <a href="/friends.html">Friends</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
 </header>
-<main>
-♡ <br><strong><u>Pokemon Lets Go Eevee [Game Review]</u></strong><br>
-<time datetime="2025-02-15T22:44:01-05:00">February 15, 2025 :: 22:44 [UTC -05:00]</time>
+
+<p><small><time datetime="2025-02-15T22:44:01-05:00">2025-02-15 :: 22:44 [UTC -05:00]</time></small><br>
+
+                          <strong><u>Pokemon Lets Go Eevee [Game Review]</u></strong></p>
+
 <p><img src="/image/wiz.png"> <em>TL;DR</em></p>
 <blockquote>
 <p><img src="/image/pink.png" title="[*]"> This is a great place to start if you are new to Pokemon (or play Lets Go Pikachu if you prefer Pikachu more).<br>
@@ -57,26 +53,18 @@
 <p>It feels good to be back in the Kanto region, but with a new twist, I get to have Eevee as my starter, and we both get to have all sorts of cute outfits as well as Eevee getting some custom moves that are exclusive only to this game. Eevee is a very powerful mon in this game as you can use items to increase his stats and they can learn lots of cool moves corresponding to all the different Eeveelutions. (sorry, but you can’t evolve the Eevee starter in this game, and why would you? For once, you get to let your Eevee be an Eevee and actually stand a chance in battle!!)</p>
 <p>This game incorporates mega-evolutions and Alola region versions of older mons, which is consistent with most remakes that they would include the new with the old. However, Gen I remakes Fire Red/Leaf Green included breeding and other features that were not included in the Lets Go titles. There is also a limited number of mons in this game, which is now the new trend in Pokemon games, which is rather annoying if you got mons you’d love to bring over and use. This title is just Yellow version with a lot of polish (without substance) and the simple annoyances/limitations of a mobile game. If you don’t like Pokemon GO, then definitely don’t play this game because wild encounters are similar to the mechanics of that game.</p>
 <p><i>I’ll be honest with you...</i> I do like this game and did have some fun. I like the playful nature of it, and if you want more out of the game you can get a lot of play out of this game if you are into the shiny grind or whatever. <i>That being said...</i> there just are a lot better titles for Pokemon that deserve more attention than this, even some of the newer ones. I am happy that Eevee has a title now that it deserves, but I only bought this title because I wanted to get every Pokemon title I could get at the time. Playing it with friends and enjoying seeing Pokemon in the over-world was really cool, nicknaming Pokemon funny names, etc (the closest we get to a Lets Play or steaming live in prison). I can appreciate that Game Freak gave us the opportunity to go back to Kanto again, but for my next time in Kanto I’d rather play Gen I, Gen II, or the Gen I remakes.</p>
-<div>
-    <div>:</div>
-    <ul>
-        <li><a href="/sections/prison_game_reviews/">Prison Game Reviews</a></li> 
-    </ul>
-</div>
-</main>
 
-</body>
 
-<footer>
+<p>:: <a href="/sections/prison-game-reviews">Prison Game Reviews</a></p>
+<footer class="blog-footer">
 
-<p>
-♡ ♡ ♡ <a href="/index.atom">atom feed</a> | <a href="https://github.com/archmageakai/www">web src</a> ♡ ♡ ♡<br>
-<br>
-
-<strong><a href="https://applecamp.bandcamp.com"><img src="/image/applecamp.png" /><br>
+  <p>
+<a href="https://applecamp.bandcamp.com"><img src="/applecamp.png" /><br>
     grindcore by chinchillas</a>
 ♡<br>
 </p>
+
+<p>
 <span id="clean-time"></span>
 <span id="release-time"></span>
 
@@ -122,11 +110,11 @@ function timeSince(dateString) {
 
 document.getElementById("clean-time").textContent = timeSince("2018-10-16") + " // ";
 document.getElementById("release-time").textContent = timeSince("2024-10-25");
-</script>
+</script><br> <a href="/recovery/jft.html">Just For Today</a></p>
 
-<br><a href="/recovery/jft.html">Just For Today</a><br>
 
-<p>[<i>Generated by <a href="https://github.com/archmageakai/gikoru">Gikoru</a>!</i>]</p>
+<p>This site is <a href="https://github.com/archmageakai/www">free and open-source</a> and freely generated by <a href="https://github.com/archmageakai/gikoru">Gikoru</a>.<br>
+Powered by GNU Emacs and Org mode.</p>
+
+<p><a href="https://play.gikopoi.com">play.gikopoi.com</a></p>
 </footer>
-</html>
-

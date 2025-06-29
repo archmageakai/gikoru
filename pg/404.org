@@ -1,0 +1,6 @@
+#+BEGIN_EXPORT html
+  <h1>404 Not Found</h1>
+  <img src="/image/JBCS.jpg" 
+	width="300" 
+    height="225" />
+#+END_EXPORT

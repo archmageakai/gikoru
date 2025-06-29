@@ -1,0 +1,6 @@
+#+BEGIN_EXPORT html
+  <h1>403 Forbidden</h1>
+  <img src="/image/taboo.png"
+       width="300"
+       />
+#+END_EXPORT

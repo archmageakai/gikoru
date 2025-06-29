@@ -1,0 +1,18 @@
+#+POST-TITLE: Gikopoi Holiday 2024
+#+TIME: 2025-01-08T22:11:16-05:00
+#+SECTION: Gikopoi
+#+PUBLIC: YES
+
+#+BEGIN_EXPORT html
+<p>It is now 2025, but we got to end 2024 on a good note at Gikopoi.</p>
+<p>This is just a recap of my fun on Gikopoi for Holidays 2024.</p>
+<p>I've been pretty active streaming, especially when #AFK. I usually stream a lot of Nightcore playlists, but I change it up too sometimes with a variety of content.</p>
+<p>We had the first annual Gikopoi Christmas Nights of Nightcore event as well. We enjoyed 2 days straight of Nightcore DJing from yours truly. It is such a blessing to be in the modern world and be able to DJ without actually being present. Thank you Gikopoi.</p>
+<p><img src="https://booru.gikopoi.com/_images/2557e88b9f5caf95cdb3c4cf99e9e4df/188%20-%20akai%20christmas%20event%20gikoxmas%20holiday%20keyvisual%20love%20luv%20nightcore%20xmas.jpg" width="300" height="500" /></p>
+<p><i>Key Visual - Christmas Nights of Nightcore 2024</i></p>
+<p>(Key Visual stamp of approval from Archduke, except oppai too much I guess. Noted, will work on that..)
+<p><img src="https://play.gikopoi.com/characters/akai/front-standing.png"></p>
+<p>This is maybe unrelated to Holiday celebrations, but there is now an Akai/wizard hat Giko available for <a href="https://play.gikopoi.com">play on Gikopoi</a> now!</p>
+<p>So, what are you waiting for? Let's <a href="https://play.gikopoi.com">play Gikopoi</a> today!!</p>
+<p>(This blog post provided as my dues for using server space for my ramblings, and due to a binding contract of Love and Friendship to Archduke)</p>
+#+END_EXPORT

@@ -1,0 +1,24 @@
+#+POST-TITLE: prison cell drawing 1
+#+TIME: 2025-02-06T21:38:47-05:00
+#+SECTION: CAD
+#+PUBLIC: YES
+
+#+BEGIN_EXPORT html
+<main>
+<p><img src="https://booru.gikopoi.com/_images/5b064b28056eb89c95093e353827db44/228%20-%20akai%20blueprint%20cad%20cell%20prison%20prison_cell.png" width="300" height="500" /></p>
+<p>- <u>Moving clockwise from top left</u></p>
+<li>Toilet/sink</li>
+<li>Bunk beds w/ ladder</li>
+<li>Cabinets/shelves</li>
+<li>Table/desks</li>
+<p>- <u>My thoughts on next blueprint</u></p>
+<li>I forgot the cell door too.... so, I'm missing some things, and am going to refine this overtime with more detail.</li>
+<li>Hopefully the prison cell CAD drawing commences, along with other fun blueprint/floorplan ideas.</li>
+<li>Basic 2d CAD is fun, but I'm also reminded I've gotten rusty and need to do floorplanning more.</li>
+<p>- <u>Benefits of making blueprints</u></p>
+<li>It is good practice of design principles</li>
+<li>Good for brain health</li>
+<li>Almost like another form of meditation for me</li>
+<li>Useful to have blueprints to demonstrate when I'm telling (prison) stories</li>
+</main>
+#+END_EXPORT

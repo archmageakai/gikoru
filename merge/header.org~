@@ -1,0 +1,21 @@
+#+BEGIN_EXPORT html
+<header class="blog-header">
+  <div class="top-row">
+    <div class="left-group">
+      <img src="/redhamster.gif" alt=":3" class="side-gif">
+      <h1 class="site-title">Akai</h1>
+    </div>
+    <a href="/index.atom">
+    <img src="/rss.svg" alt="Feed" class="feed-icon">
+    </a>
+  </div>
+  <nav class="nav-bar">
+    <a href="/index.html">Main</a>
+    <a href="/sections">Sections</a>
+    <a href="/archive">Archive</a>
+    <a href="/portal.html">Portal</a>
+    <a href="/friends.html">Friends</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+</header>
+#+END_EXPORT

@@ -1,0 +1,73 @@
+#+BEGIN_EXPORT html
+<p>> <strong><u>friends</u></strong></p>
+<main>
+From people to concepts to communities, this page captures the collection of the secret geniuses hidden from society, only to remain available in secrete and in rarity.<br><br>
+88x31 button:<br>
+<img src="https://akai.gikopoi.com/image/akai.png"><br>
+HTML: <br>
+<code>&lt;a href="https://akai.gikopoi.com"&gt;&lt;img src="https://akai.gikopoi.com/image/akai.png"&gt;&lt;/a&gt;</code>
+<br><br>
+
+<u>Gikoverse</u>
+
+<ul>
+  
+  <li><a href="https://play.gikopoi.com" target="_blank">Play Gikopoi</a>
+  <li><a href="https://gikopoi.com" target="_blank">Homepage</a> 
+  <li><a href="https://bbs.gikopoi.com" target="_blank">BBS</a>
+  <li><a href="https://wiki.gikopoi.com" target="_blank">Wiki</a>
+  <li><a href="https://booru.gikopoi.com" target="_blank">Booru</a>
+  <li><a href="https://events.gikopoi.com/" target="_blank">Events</a>
+</ul>
+
+<u>People</u>
+
+<ul>
+  <li><a href="https://4x13.net">52</a> 
+  [ <a href="https://4x13.net/blog/">blog</a> ]
+  <li><a href="https://meltingwax.net">MeltingWax</a>
+  <li><a href="https://shaddox.neocities.org/">Shaddox</a>
+  <li><a href="https://tsubo.gikopoi.com/">Tsubo-D</a> 
+  [ <a href="https://tsubo.gikopoi.com/blog/">blog</a> ]
+  <li><a href="http://rakka.au/">Zergling_man</a>
+  <li><a href="https://temple-moss.neocities.org/">zoomy</a> 
+  [ <a href="https://temple-moss.neocities.org/blog">blog</a> ]
+  
+</ul>
+
+<u>Community</u>
+
+<ul>
+  <li><a href="https://sageru.org/" target="_blank">The Unholy Citadel of 6ch</a> [ <a href="https://sageru.org/irc/" target="_blank">IRC</a> ]
+  <span class="indent">SAGERU BUZZ BUZZ@@@@@@ (irc: #jp)@@@@</span>
+</ul>
+
+<u>Music</u>
+
+<ul>
+  <li><a href="https://applecamp.bandcamp.com"
+	 target="_blank">Applecamp records</a>
+	 <span class="indent">WE LUV APPLECAMP @@@@@@@@@@@@@@@@</span>
+</ul>
+
+<u>Repo</u>
+
+<ul>
+  <li><a href="https://github.com/153/gikopoi3"
+	 target="_blank">gikopoi3</a> 
+	 <span class="indent">gikopoi3 fork</span>
+  <li><a href="https://github.com/153/giko.py/"	
+	 target="_blank">giko.py bot</a> 
+	 <span class="indent">giko.py chatbot from gikopoi</span>
+  <li><a href="https://github.com/archmageakai/akai.py"
+	 target="_blank">akai.py bot</a> 
+	 <span class="indent">giko.py chatbot fork</span>
+  <li><a href="https://github.com/archmageakai/gikoru"
+         target="_blank">gikoru</a> 
+	  <span class="indent">static site/blog generator for/by akai</span>
+  <li><a href="https://github.com/archmageakai/www"
+         target="_blank">www</a> 
+	  <span class="indent">this website's src</span>
+</ul>
+</main>
+#+END_EXPORT

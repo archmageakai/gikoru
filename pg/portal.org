@@ -1,0 +1,20 @@
+#+BEGIN_EXPORT html
+<p>> <strong><u>wizard's portal</u></strong></p>
+<main>
+some other realms and places to explore...<br><br>
+
+<u>Games/Programs/Bots</u>
+
+<ul>
+  
+  <li><a href="/akai.py">akai.py bot index</a> -- includes info of akaiyen and gacha-game
+</ul>
+
+<u>Lit/education</u>
+
+<ul>
+  <li><a href="/recovery">Recovery</a> -- NA-based recovery resources, steps, traditions, principles and literature as well as the Just for Today meditation.
+  <li>Northern Tradition (<i>coming soon!</i>) -- includes Norse mythology, Gods/Goddesses, Eddas, Sagas, Runes, Rites of Passage, recommend readings.
+</ul>
+</main>
+#+END_EXPORT

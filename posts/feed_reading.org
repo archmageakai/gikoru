@@ -1,0 +1,55 @@
+#+POST-TITLE: My Approach to RSS/atom Feed Reading
+#+TIME: 2025-05-25T21:20:57-04:00
+#+SECTION: Tech
+#+PUBLIC: YES
+
+#+BEGIN_EXPORT html
+<p>In 2025, there really is not a lot of guides out there to approach efficient feed reading. There are pay-walled feed readers out there, that can sync data efficiently for all your preferred devices. I don't recommend my approach, unless you are open to a few steps... otherwise, using other methods might be nice. Personally, I do not prefer using feed readers that read based off of someone else's server, as I've encountered a lack of control in updates in feeds (<i>namely</i>: I can't refresh the feed myself, and that less-frequented websites do not update as quick as larger/high-traffic webpages... not good for my use at all as I love a lot of de-centralized pages and small-scale blogs/BBS/etc.)</p>
+<p><u>The feed readers I use are</u>: <br>
+<b>(1) Feedbro reader, a Firefox extension</b> [ <a href="https://addons.mozilla.org/en-US/firefox/addon/feedbroreader/">link here</a> ]<br> 
+<b>(2) Capy reader, a reader app for Android (through F-droid)</b> [ <a href="https://github.com/jocmp/capyreader?tab=readme-ov-file#capy-reader">link here</a> ] ...</p>
+<p>The first thing that I do to keep my readers in sync is that, I primarily add feeds through Feedbro. It is a lot less tedious to use PC for adding RSS/atom feeds, and Feedbro can detect feeds on pages easily. I can then export my feeds as an OPML file, for my mobile device.</p>
+<p>ONLY ONE ISSUE!! The way that Feedbro exports seems to export tags and other data improperly. This is mostly a problem when I rename the title of feeds. This is an issue when I want a nice and organized set of feeds on Capy reader app on Android!!! I took it upon myself to make a python script, which I will share, to fix these OPML files from Feedbro.</p>
+<p>I put my script in a directory <code>~/rss_scripts</code> and I also save my OPML files in that same directory, as this script READS all OPML and XML files in the directory. This script will go through all files and clean them if necessary, so that your title/name changes to your feeds will sync up correctly in Capy reader.</p>
+<p>Please note that this script always outputs XML files, so that can be an indicator of which file is which. Another note, all output files will end with <code>_synced.xml</code> as well. You can move your synced XML file over to your Android device and import with Capy reader.</p>
+
+<pre style="background:#1e1e1e;color:#dcdcdc;padding:1em;border-radius:8px;overflow:auto">
+<span style="color:#569cd6">import</span> os  
+<span style="color:#569cd6">import</span> xml.etree.ElementTree <span style="color:#569cd6">as</span> ET
+
+folder_path = <span style="color:#dcdcaa">os</span>.<span style="color:#dcdcdc">path</span>.<span style="color:#dcdcaa">dirname</span>(<span style="color:#dcdcaa">os</span>.<span style="color:#dcdcaa">path</span>.<span style="color:#dcdcaa">abspath</span>(__file__))
+
+<span style="color:#dcdcaa">for</span> filename <span style="color:#569cd6">in</span> os.<span style="color:#dcdcaa">listdir</span>(folder_path):
+    <span style="color:#dcdcaa">if</span> filename.<span style="color:#dcdcaa">endswith</span>(<span style="color:#d69d85">".xml"</span>) <span style="color:#569cd6">or</span> filename.<span style="color:#dcdcaa">endswith</span>(<span style="color:#d69d85">".opml"</span>):
+        full_path = os.<span style="color:#dcdcaa">path</span>.<span style="color:#dcdcaa">join</span>(folder_path, filename)
+        tree = ET.<span style="color:#dcdcaa">parse</span>(full_path)
+        root = tree.<span style="color:#dcdcaa">getroot</span>()
+
+        changed = <span style="color:#569cd6">False</span>
+        <span style="color:#dcdcaa">for</span> outline <span style="color:#569cd6">in</span> root.<span style="color:#dcdcaa">iter</span>(<span style="color:#d69d85">"outline"</span>):
+            display_text = outline.<span style="color:#dcdcaa">attrib</span>.<span style="color:#dcdcaa">get</span>(<span style="color:#d69d85">"text"</span>)
+            feed_title = outline.<span style="color:#dcdcaa">attrib</span>.<span style="color:#dcdcaa">get</span>(<span style="color:#d69d85">"title"</span>)
+            <span style="color:#dcdcaa">if</span> display_text <span style="color:#569cd6">and</span> feed_title <span style="color:#569cd6">and</span> display_text != feed_title:
+                outline.<span style="color:#dcdcaa">set</span>(<span style="color:#d69d85">"title"</span>, display_text)
+                changed = <span style="color:#569cd6">True</span>
+
+        <span style="color:#dcdcaa">if</span> changed:
+            output_path = os.<span style="color:#dcdcaa">path</span>.<span style="color:#dcdcaa">join</span>(folder_path, 
+			f<span style="color:#d69d85">"{os.path.splitext(filename)[0]}_synced.xml"</span>)
+            tree.<span style="color:#dcdcaa">write</span>(output_path, encoding=<span style="color:#d69d85">"utf-8"</span>, xml_declaration=<span style="color:#569cd6">True</span>)
+            print(f<span style="color:#d69d85">"Updated: {filename} -&gt; {os.path.basename(output_path)}"</span>)
+        <span style="color:#dcdcaa">else</span>:
+            print(f<span style="color:#d69d85">"{filename} has no necessary changes. File not updated."</span>)
+</pre>
+
+<p>I hope this guide can be helpful to some people interested in RSS/atom reading, without the need to pay for a feed reader. This doesn't fix a lot of problems with RSS/atom reading as it stands in 2025. (The pessimistic side of me would say RSS/atom is dying the slow death...) There is still the issue of not syncing up Read/Unread posts. For me, I don't mind leaving lots of my feeds unread, and I generally keep track or remember what I have read. It isn't a major inconvenience for me to have to mark all as read on the other devices if I have to. There are settings to reduce number of posts per feed, and other tweaks that I recommend that the user decide for themselves. My main objective is that I can have access to all my feeds IN AN ORGANIZED MANNER no matter what device I am using. Overtime, I will add more to my rss cleaning script as I see fit. If I find new ways to make RSS/atom reading efficient in a de-centralized and alternative way, I'll always be sure to share!</p>
+<br>
+<strong><u>Summary</u>:</strong>
+<ul>
+  <li>Add feeds using Feedbro extension on Firefox</li>
+  <li>Export OPML from Feedbro</li>
+  <li>Run Python script to output newly cleaned XML file</li>
+  <li>Transfer XML file to my Android device</li>
+  <li>Import XML to Capy reader</li>
+</ul>
+#+END_EXPORT

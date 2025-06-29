@@ -1,0 +1,148 @@
+#+BEGIN_EXPORT html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	
+    <title>ギコっぽいの赤いネス</title>
+    
+<script>
+let jsonData = {};
+let itemsData = {};
+let bladesData = {};
+let lastLoadedPlayer = ""; // Cache to track current displayed player
+let lastJsonData = ""; // Cache to prevent unnecessary updates
+
+// Function to load JSON data and update player display
+async function loadJSON() {
+    try {
+        const userResponse = await fetch('users.json', { cache: 'no-store' });
+        const newJsonData = await userResponse.text(); // Read as text first to compare
+        if (newJsonData === lastJsonData) return; // Skip reload if data is unchanged
+        lastJsonData = newJsonData; // Update cache
+        jsonData = JSON.parse(newJsonData); // Parse new data
+
+        const itemsResponse = await fetch('items.json', { cache: 'no-store' });
+        itemsData = await itemsResponse.json();
+
+        const bladesResponse = await fetch('blade.json', { cache: 'no-store' });
+        bladesData = await bladesResponse.json();
+
+        updateDisplay(true); // Force update display
+    } catch (error) {
+        console.error('Error loading JSON:', error);
+        document.getElementById("result").innerHTML = "<p>Error loading data. Please try again later.</p>";
+    }
+}
+
+// Function to format numbers
+function formatNumber(value) {
+    return (typeof value === 'number' && !Number.isInteger(value)) ? value.toFixed(2) : value.toString();
+}
+
+// Get item name by ID
+function getItemName(itemID) {
+    const item = itemsData.items.find(i => i.item_ID === itemID);
+    return item ? item.item_name : "Unknown Item";
+}
+
+// Get blade name by ID
+function getBladeName(bladeID) {
+    const blade = bladesData.blades.find(b => b.blade_ID === bladeID);
+    return blade ? blade.blade_name : "Unknown Blade";
+}
+
+// Function to update player data or display all players
+function updateDisplay(forceUpdate = false) {
+    let resultDiv = document.getElementById("result");
+
+    if (!jsonData || !jsonData.users) {
+        resultDiv.innerHTML = "<p>loading....</p>";
+        return;
+    }
+
+    let playerName = decodeURIComponent(window.location.hash.slice(1));
+
+    if (!playerName) {
+        
+        resultDiv.innerHTML = "<small>Player index</small><ul>";
+        jsonData.users
+            .sort((a, b) => a.player_name.localeCompare(b.player_name, 'en', { numeric: true }))
+            .forEach(user => {
+                resultDiv.innerHTML += `<li><a href="users.html#${encodeURIComponent(user.player_name)}">${user.player_name.replace(/ /g, '&nbsp;')}</a></li>`;
+            });
+        resultDiv.innerHTML += "</ul>";
+        return;
+    }
+
+    if (playerName === lastLoadedPlayer && !forceUpdate) return; // Skip redundant updates unless forced
+
+    let player = jsonData.users.find(user => user.player_name === playerName);
+
+    if (player) {
+        lastLoadedPlayer = playerName; // Cache player
+
+        let yen = formatNumber(player.currencies.yen);
+        let grossYen = formatNumber(player.currencies.gross_yen);
+        let todayGacha = formatNumber(player.gacha.today);
+        let guaranteeGacha = formatNumber(player.gacha.guarantee);
+        let totalGacha = formatNumber(player.gacha.total);
+
+        resultDiv.innerHTML = `<strong>${player.player_name.replace(/ /g, '&nbsp;')}</strong><br>`;
+        resultDiv.innerHTML += `<u><strong>Gacha</strong></u>`;
+        resultDiv.innerHTML += `<p>Today: ${todayGacha} / Guarantee: ${guaranteeGacha} / Total: ${totalGacha}</p>`;
+
+        // Items
+        resultDiv.innerHTML += `<u><strong>Inventory</strong></u>`;
+        if (Object.keys(player.items).length > 0) {
+            let itemIndex = 1;
+            Object.entries(player.items).forEach(([key, value]) => {
+                let itemName = getItemName(parseFloat(key));
+                resultDiv.innerHTML += `<p>${itemIndex}. [ID ${key}] <a href="items.html#${key}">${itemName}</a> x ${value}</p>`;
+                itemIndex++;
+            });
+        } else {
+            resultDiv.innerHTML += `<p>No items</p>`;
+        }
+
+        // Blades
+        resultDiv.innerHTML += `<u><strong>Blades</strong></u>`;
+        if (Object.keys(player.blades).length > 0) {
+            let bladeIndex = 1;
+            Object.entries(player.blades).forEach(([key, value]) => {
+                let bladeName = getBladeName(parseFloat(key));
+                resultDiv.innerHTML += `<p>${bladeIndex}. [ID ${key}] <a href="blade.html#${key}">${bladeName}</a> <br>
+                    Slots (Available: ${value.core_slots.available}, Used: ${value.core_slots.used}, Broken: ${value.core_slots.broken})</p>`;
+                bladeIndex++;
+            });
+        } else {
+            resultDiv.innerHTML += `<p>No blades</p>`;
+        }
+    } else {
+        resultDiv.innerHTML = `<p>Player not found. Please check the name or try again later.</p>`;
+    }
+}
+
+window.onhashchange = updateDisplay;
+
+window.onload = function () {
+    loadJSON(); // Load initial data
+    updateDisplay(); // Load player if hash exists or show list
+};
+
+setInterval(loadJSON, 1000);
+</script>
+
+
+</head>
+<body>
+    <div id="result"></div>
+</body>
+</html>
+
+#+END_EXPORT

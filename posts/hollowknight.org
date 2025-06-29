@@ -1,0 +1,20 @@
+#+POST-TITLE: Hollow Knight [Game Review]
+#+TIME: 2024-12-25T18:35:51-05:00
+#+SECTION: Prison Game Reviews
+#+PUBLIC: YES
+
+#+BEGIN_EXPORT html
+<p><img src="/image/wiz.png" alt="wizhat" title="wizhat"> <em>TL;DR</em></p>
+<blockquote>
+<p><img src="/image/gold.png" alt="certified indie gold" title="certified indie gold"> Certified that this is game is pure indie gold, and this game is a must play.<br>
+<img src="/image/green.png" alt=""> Metroidvania fans, noobs, and haters should all try this game, it is worth the work and the play.<br>
+<img src="/image/pink.png" alt=""> There is still a lot I'd love to (re-)explore in this game, and perhaps will do a post where I revisit this title.</p>
+</blockquote>
+<p>[<em>Played on a Nintendo Switch Lite</em>]</p>
+<hr>
+<p>Metroidvania titles are dime a dozen these days. With the lack of new Castlevania titles being released and the newest Metroid title (Metroid Dread, not counting the Metroid Prime remaster as a new title) being a small-scale game that is reminiscent of eating fun-size candy (or some other quick treat), it really makes a fan like me of metroidvania crave something new and exciting. Hollow Knight was exactly what I was looking for, but more.</p>
+<p>Hollow Knight has a really unique weapon and equip system, that makes for lots of different approaches to Bossing in a metroidvania title. This game is full of exciting biomes and scenery, as well as a riveting piano soundtrack that literally made me just sit there and close my eyes and just listen to the ambience for awhile. I really enjoyed the playful yet serious nature of Hollownest. The voice acting is spot-on and just makes me feel comfortable in this dark, confusing world I had to piece together. I never had Boss fights make me bust into laughter yet have to get real serious in a quick second as to not would be the cause of imminent death.</p>
+<p>For metroidvania, this title can be forgiving, but doesn't remove the challenges that you'd expect in a platformer of a high caliber. I enjoyed the fact that this game for the most part lets you go on your own adventure, and does not hold your hand at all. The maps are nice, easy to read, helpful, and worth the purchase when you get to a new biome. The game embodies all the great things of both Metroid and Castlevania.</p>
+<p>Gameplay is very smooth for this title, and it is a very clean game. I never felt like there was any real bugs or glitches, or encountered anything that felt like it just didn't belong. I never felt like any boss had any cheap advantages or that I could only beat something with one approach. Hollow Knight is not limiting, and it is also not going to cheat you out of a win against a Boss. There is no gimmicks or games, yet it is a game and it makes you want more. Team Cherry was very careful in releasing this title, and they had good design planning and sensibilities when it came to making a complete game. There is a lot of optional content just waiting for you to explore. The story is definitely not exactly approachable, but you can piece it together and find your own meanings to different things. You do definitely feel immersed in that world once you got the audio on. It is just so hard to put down at times. There is a good amount of puzzles and figuring things out, and that makes the game exciting for someone like me. This game is everything I wanted out of a metroidvania title, and is just perfect for me. I enjoy the characters, the story, and the world of Hollownest. We are still waiting on a sequel to this title, and it is definitely exciting to see that there is more left to such an awesome concept and world.</p>
+<p>Anyone that is new to metroidvania should definitely give this a try. If you don't like metroidvania, still give it a try. And if you LOVE metroidvania, but have not played Hollow Knight, you need to play this game.</p>
+#+END_EXPORT

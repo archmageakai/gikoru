@@ -1,0 +1,8 @@
+#+POST-TITLE: 1
+#+TIME: 2024-11-25T01:26:49-05:00
+#+SECTION: Numbers
+#+PUBLIC: YES
+
+#+BEGIN_EXPORT html
+<p>Hello, this is AKAINES blog for reflections/meditations, game development, AKAINES soundworks and music production, video game talks/reviews, Jailhouse cooking and recipes, and whatever else it needs to be. That is all for now.</p>
+#+END_EXPORT
