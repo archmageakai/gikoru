@@ -4,7 +4,6 @@
 #+PUBLIC: YES
 
 #+BEGIN_EXPORT html
-<main>
 <p><img src="https://booru.gikopoi.com/_images/00dae93496ca7ff5dee682f8afa1203e/277%20-%20akai%20blueprint%20cad%20cell%20prison%20prison_cell.png" width="300" /></p>
 <p><u>Moving clockwise from top left</u></p>
 <li>Toilet/sink</li>
@@ -20,5 +19,4 @@
 <li>Fun hobby</li>
 <li>keeps me sharp</li>
 <li>helps me learn more libreCAD (which can be a bit different in some ways from the softwares its inspired/derived from), as I prefer not to use bloatware</li>
-</main>
 #+END_EXPORT

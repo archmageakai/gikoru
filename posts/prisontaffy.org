@@ -4,16 +4,15 @@
 #+PUBLIC: YES
 
 #+BEGIN_EXPORT html
-<p>
-<img src="https://booru.gikopoi.com/_images/0024189cb4920c66fd8863eece9171b1/245%20-%20akai%20akai_food%20prison%20prison_taffy%20taffy.png" style="max-width: 100%; height: auto;"><br><br>
-<u>Ingredients</u>* :<br>
+<p><img src="https://booru.gikopoi.com/_images/0024189cb4920c66fd8863eece9171b1/245%20-%20akai%20akai_food%20prison%20prison_taffy%20taffy.png" style="max-width: 100%; height: auto;"><br><br>
+<u>Ingredients</u>:<br>
 ~230 mL - powdered coffee creamer (classic/null flavor)<br>
 ~30 mL - water<br>
 ~3 ct. - single mix packets of skittles green apple juice**<br><br>
 
-* <i>these ingredients will vary depending on which products you use, as well as if you prefer stronger or lighter flavor</i><br>
+*<i>these ingredients will vary depending on which products you use, as well as if you prefer stronger or lighter flavor</i><br>
 ---> <i>lighter flavor add more creamer / stronger flavor add more juice</i> <---<br>
-** <i>you can use any juice that you would prefer. I prefer to use singles packs as I find some of the best flavors compared to larger drink mixes in a tub.</i><br><br>
+<i>you can use any juice that you would prefer. I prefer to use singles packs as I find some of the best flavors compared to larger drink mixes in a tub.</i><br><br>
 </p>
 
 <p>

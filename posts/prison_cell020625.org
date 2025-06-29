@@ -4,7 +4,6 @@
 #+PUBLIC: YES
 
 #+BEGIN_EXPORT html
-<main>
 <p><img src="https://booru.gikopoi.com/_images/5b064b28056eb89c95093e353827db44/228%20-%20akai%20blueprint%20cad%20cell%20prison%20prison_cell.png" width="300" height="500" /></p>
 <p>- <u>Moving clockwise from top left</u></p>
 <li>Toilet/sink</li>
@@ -20,5 +19,4 @@
 <li>Good for brain health</li>
 <li>Almost like another form of meditation for me</li>
 <li>Useful to have blueprints to demonstrate when I'm telling (prison) stories</li>
-</main>
 #+END_EXPORT

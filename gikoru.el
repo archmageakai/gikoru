@@ -23,6 +23,8 @@
 
 (defvar gikoru-export-posts-header "#+BEGIN_EXPORT html\n%s#+END_EXPORT\n\n%s")
 
+(defvar gikoru-post-html-wrapper-tag "main") ;; change to body if preferred.
+
 (defvar gikoru-index-title "index")
 
 (defvar gikoru-index-title-style
@@ -80,23 +82,27 @@
    (gikoru--read-file (expand-file-name "footer.org" gikoru-merge-dir))))
 
 (defun gikoru--export-posts ()
+  "Export all public Org posts from `gikoru-posts-dir` to HTML in `gikoru-output-posts-dir`."
   (unless (file-directory-p gikoru-output-posts-dir)
     (make-directory gikoru-output-posts-dir t))
   (dolist (orgfile (directory-files gikoru-posts-dir t "\\.org$"))
     (let* ((meta (gikoru--extract-post-meta orgfile)))
-      (when meta ;; Only if it’s public
+      (when meta ;; Only if PUBLIC: yes
         (let* ((title (plist-get meta :title))
                (time (plist-get meta :time))
                (section (or (plist-get meta :section) "Null"))
                (section-link (format "<p>:: <a href=\"/sections/%s\">%s</a></p>\n"
-				     (gikoru--sanitize-section-name section)
-				     section))
+                                     (gikoru--sanitize-section-name section)
+                                     section))
                (header-html (gikoru--format-post-header title time))
                (raw-body (gikoru--read-file orgfile))
-               (enhanced-body
-                (format gikoru-export-posts-header
-                        header-html
-                        (concat raw-body "\n\n#+BEGIN_EXPORT html\n" section-link "#+END_EXPORT")))
+               (wrapped-body (concat
+                              (format "#+BEGIN_EXPORT html\n<%s>\n#+END_EXPORT\n"
+                                      gikoru-post-html-wrapper-tag)
+                              raw-body
+                              (format "\n#+BEGIN_EXPORT html\n</%s>\n%s#+END_EXPORT\n"
+                                      gikoru-post-html-wrapper-tag section-link)))
+               (enhanced-body (format gikoru-export-posts-header header-html wrapped-body))
                (merged-content (gikoru--merge-org-content enhanced-body))
                (basename (file-name-base orgfile))
                (merged-path (expand-file-name (concat basename "-merged.org") gikoru-output-posts-dir))
@@ -113,6 +119,42 @@
           ;; Delete merged org file
           (delete-file merged-path)
           (message "Exported %s" html-path))))))
+
+
+;; (defun gikoru--export-posts ()
+;;   (unless (file-directory-p gikoru-output-posts-dir)
+;;     (make-directory gikoru-output-posts-dir t))
+;;   (dolist (orgfile (directory-files gikoru-posts-dir t "\\.org$"))
+;;     (let* ((meta (gikoru--extract-post-meta orgfile)))
+;;       (when meta ;; Only if it’s public
+;;         (let* ((title (plist-get meta :title))
+;;                (time (plist-get meta :time))
+;;                (section (or (plist-get meta :section) "Null"))
+;;                (section-link (format "<p>:: <a href=\"/sections/%s\">%s</a></p>\n"
+;; 				     (gikoru--sanitize-section-name section)
+;; 				     section))
+;;                (header-html (gikoru--format-post-header title time))
+;;                (raw-body (gikoru--read-file orgfile))
+;;                (enhanced-body
+;;                 (format gikoru-export-posts-header
+;;                         header-html
+;;                         (concat raw-body "\n\n#+BEGIN_EXPORT html\n" section-link "#+END_EXPORT")))
+;;                (merged-content (gikoru--merge-org-content enhanced-body))
+;;                (basename (file-name-base orgfile))
+;;                (merged-path (expand-file-name (concat basename "-merged.org") gikoru-output-posts-dir))
+;;                (html-path (expand-file-name (concat basename ".html") gikoru-output-posts-dir)))
+;;           ;; Write merged org file
+;;           (with-temp-file merged-path
+;;             (insert merged-content))
+;;           ;; Export to HTML
+;;           (with-current-buffer (find-file-noselect merged-path)
+;;             (org-html-export-to-html nil nil nil t)
+;;             (let ((exported-html (concat (file-name-sans-extension merged-path) ".html")))
+;;               (rename-file exported-html html-path t))
+;;             (kill-buffer))
+;;           ;; Delete merged org file
+;;           (delete-file merged-path)
+;;           (message "Exported %s" html-path))))))
 
 (defun gikoru--extract-post-meta (file)
   (with-temp-buffer
@@ -489,7 +531,8 @@
     (forward-line 4) ;; skip metadata lines
     (let* ((content (buffer-substring-no-properties (point) (point-max)))
            (cleaned (replace-regexp-in-string
-                     "^#\\+BEGIN_EXPORT.*\n\\|^#\\+END_EXPORT.*\n" ""
+                     "^#\\+BEGIN_EXPORT.*\n\\|^#\\+END_EXPORT.*\n"
+                     ""
                      content t t)))
       (string-trim cleaned)))) ;; trim whitespace at start/end
 
@@ -499,60 +542,70 @@
 (defun gikoru--generate-atom-feed (input-dir output-file feed-meta)
   (let ((xml-ns "http://www.w3.org/2005/Atom")
         (entries '()))
-
+    ;; Collect entries from .org files in INPUT-DIR
     (dolist (file (directory-files input-dir t "\\.org$"))
       (let ((meta (gikoru--extract-post-meta file)))
         (when meta
           (let* ((title (plist-get meta :title))
                  (time (plist-get meta :time))
-                 (section (plist-get meta :section))
-                 (content (gikoru--read-org-body file))
-                 (entry-id (format "%s%s" (plist-get feed-meta :id) (file-name-nondirectory file)))
+                 (entry-id (format "%s%s" (plist-get feed-meta :id)
+                                   (file-name-nondirectory file)))
                  (escaped-title (gikoru--xml-escape title))
-
-                 (published-time (replace-regexp-in-string
-                                  " "
-                                  "T"
-                                  (format-time-string "%Y-%m-%dT%H:%M:%S%:z"
-                                                      (date-to-time time)))))
+                 (html-content
+                  (with-current-buffer (find-file-noselect file)
+                    (goto-char (point-min))
+                    (forward-line 4) ;; skip metadata
+                    (let ((org-export-with-toc nil)
+                          (org-export-with-section-numbers nil))
+                      (prog1
+                          (org-export-as 'html nil nil t nil)
+                        (kill-buffer)))))
+                 (published-time (format-time-string
+                                  "%Y-%m-%dT%H:%M:%S%:z"
+                                  (date-to-time time))))
             (push (list :title escaped-title
                         :id entry-id
                         :link (format "%sposts/%s.html"
-				      (plist-get feed-meta :id) (file-name-base file))
+                                      (plist-get feed-meta :id)
+                                      (file-name-base file))
                         :published published-time
                         :updated published-time
-                       
-                        :content content)
+                        :content html-content)
                   entries)))))
-  
-    (setq entries (cl-sort entries (lambda (a b)
-                                    (string> (plist-get a :published)
-                                             (plist-get b :published)))))
-  
+    ;; Sort entries newest first
+    (setq entries (cl-sort entries
+                           (lambda (a b)
+                             (string> (plist-get a :published)
+                                      (plist-get b :published)))))
+    ;; Write the Atom feed XML
     (with-temp-buffer
       (insert "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
       (insert (format "<feed xmlns=\"%s\">\n" xml-ns))
-      
+      ;; Insert feed metadata tags
       (dolist (tag '(:id :title :updated :generator))
         (when-let ((val (plist-get feed-meta tag)))
           (insert (format "<%s>%s</%s>\n"
                           (substring (symbol-name tag) 1)
                           (gikoru--xml-escape val)
                           (substring (symbol-name tag) 1)))))
-      ;; Author
+      ;; Insert author info
       (when (plist-get feed-meta :author)
         (insert "<author>\n")
-        (insert (format "  <name>%s</name>\n" (gikoru--xml-escape (plist-get feed-meta :author))))
+        (insert (format "  <name>%s</name>\n"
+                        (gikoru--xml-escape (plist-get feed-meta :author))))
         (when (plist-get feed-meta :author_uri)
-          (insert (format "  <uri>%s</uri>\n" (gikoru--xml-escape (plist-get feed-meta :author_uri)))))
+          (insert (format "  <uri>%s</uri>\n"
+                          (gikoru--xml-escape (plist-get feed-meta :author_uri)))))
         (insert "</author>\n"))
-      ;; Links
+      ;; Insert links
       (dolist (link (plist-get feed-meta :links))
         (insert (format "<link rel=\"%s\" href=\"%s\"%s/>\n"
                         (gikoru--xml-escape (plist-get link :rel))
                         (gikoru--xml-escape (plist-get link :href))
-                        (if-let ((type (plist-get link :type))) (format " type=\"%s\"" (gikoru--xml-escape type)) ""))))
-      ;; Entries
+                        (if-let ((type (plist-get link :type)))
+                            (format " type=\"%s\"" (gikoru--xml-escape type))
+                          ""))))
+      ;; Insert entries
       (dolist (entry entries)
         (insert "<entry>\n")
         (insert (format "  <id>%s</id>\n" (plist-get entry :id)))
@@ -560,17 +613,14 @@
         (insert (format "  <link href=\"%s\"/>\n" (plist-get entry :link)))
         (insert (format "  <published>%s</published>\n" (plist-get entry :published)))
         (insert (format "  <updated>%s</updated>\n" (plist-get entry :updated)))
-        
-        (insert (format "  <content type=\"html\"><![CDATA[%s]]></content>\n" (plist-get entry :content)))
+        (insert (format "  <content type=\"html\"><![CDATA[%s]]></content>\n"
+                        (plist-get entry :content)))
         (insert "</entry>\n"))
       (insert "</feed>\n")
-      
       (write-region (point-min) (point-max) output-file))
     (message "Atom feed written to %s" output-file)))
 
-
 (defun gikoru ()
-  "Run the full Gikoru static blog export, including posts and index."
   (interactive)
   (let ((feed-meta
          (list :title "akai.gikopoi.com"
@@ -581,7 +631,7 @@
                :generator "https://github.com/archmageakai/gikoru"
                :links (list (list :rel "alternate" :href "https://akai.gikopoi.com/")
                             (list :rel "self" :href "https://akai.gikopoi.com/index.atom"
-				  :type "application/atom+xml")))))
+                                  :type "application/atom+xml")))))
     (gikoru--export-posts)
     (gikoru--export-index gikoru-posts-per-page)
     (gikoru--export-sections)
