@@ -2,7 +2,7 @@
 <footer class="blog-footer">
 
   <p>
-<a href="https://applecamp.bandcamp.com"><img src="/applecamp.png" /><br>
+<a href="https://applecamp.bandcamp.com"><img src="/image/applecamp.png" /><br>
     grindcore by chinchillas</a>
 ♡<br>
 </p>
