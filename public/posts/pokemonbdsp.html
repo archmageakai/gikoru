@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" href="/index.atom" title="akai.gikopoi.com">
+
+  <title>AKAI</title>
+  
+</head>
+
+<header class="blog-header">
+  <div class="top-row">
+    <div class="left-group">
+      <img src="/image/redhamster.gif" alt=":3" class="side-gif">
+      <h1 class="site-title">Akai</h1>
+    </div>
+    <a href="/index.atom">
+    <img src="/image/rss.svg" alt="Feed" class="feed-icon">
+    </a>
+  </div>
+  <nav class="nav-bar">
+    <a href="/">Main</a>
+    <a href="/sections">Sections</a>
+    <a href="/archive">Archive</a>
+    <a href="/portal.html">Portal</a>
+    <a href="/friends.html">Friends</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+</header>
+
+<p><small><time datetime="2025-02-23T01:15:38-05:00">2025-02-23 :: 01:15 [UTC -05:00]</time></small><br>
+
+                          <strong><u>Pokemon Brilliant Diamond & Shining Pearl [Game Review]</u></strong></p>
+
+<main>
+<p><img src="/image/wiz.png" alt="wizhat" title="wizhat"> <em>TL;DR</em></p>
+<blockquote>
+<p><img src="/image/orange.png" alt="[!]"> Double review: I played both Brilliant Diamond and Shining Pearl, and like most titles: pick which legendary on the box you like the most... (that’s how you pick your poison)<br>
+<img src="/image/red.png" alt="[X]"> These are the worst remakes in the Pokemon franchise. Outsourced development, glitches upon release, and most of all there is nothing truly remade or integrated into the Gen VIII architecture.<br>
+<img src="/image/pink.png" alt="[*]"> As these games are “faithful” remakes, it may be worth the playthrough for those that have not played the original Diamond and Pearl. However, I recommend Platinum version for the best Gen IV experience.<br>
+<img src="/image/pink.png" alt="[*]"> This game features some QoL, such as HMs are integrated to the Poketch.<br>
+</p>
+</blockquote>
+<p>[<em>Played on a Nintendo Switch Lite</em>]</p>
+<hr>
+<p>The Sinnoh region was always barren until you beat the Elite 4 and Cynthia, and get that post-game magic. I was excited to go back to the modern Sinnoh again, with some new features and QoL. However, these titles did not deliver. Nintendo/Game Freak outsourced the development of these titles to ILCA, and while they did a great job at polishing up a 2.5D DS title into a 3D graphics version for Switch, there was not much additions or creative innovation in these remakes. I can’t exactly attack ILCA for this, as they were tasked with a job to make “faithful” remakes. These titles aren’t exactly like the original Diamond/Pearl, as they include QoL, such as HMs integrated into the Poketch, and the underground is “revamped” (in actuality, it is just prettier).</p>
+<p>As I travel through Sinnoh, through the endless bidoof’s, I remember that Diamond/Pearl era wasn’t exactly the best for those actual titles. Platinum version and HeartGold/SoulSilver were the titles in Gen IV that made it the best. What made HeartGold/SoulSilver amazing, along with any other Pokemon remake of an older generation, is that these titles have new features that reflect the newer Gen as well as interact with the games of that Gen. Brilliant Diamond and Shining Pearl are not brilliant or shining enough to interact with Sword or Shield (being that these titles are made in Gen VIII). It would be cool if they added Dynamax to Diamond and Pearl. It would’ve been awesome to have Gen VIII Pokemon in Sinnoh underground, or at least make them tradeable. Without any extra features, I am just reminded of how truly empty the Sinnoh region is until the credits roll.</p>
+<p>The greatest disrespect of the newer Pokemon titles is that they are unashamed to release a title with glitches. These two titles are mostly patched and mostly clean now, but how does the biggest franchise in the world do that to their fans? Pokemon was always an experience, where the games had some sort of consistency where we would be thrilled with new features but also enjoy the integral parts that make it a mainline Pokemon title. Now, Game Freak plays it safe and wants to release titles that are easy to make and coast off the name of Pokemon, and now in order to mass-market more effectively: outsource development. I know that the team was probably focused on developing Arceus, and that these titles were kind of a way to give a teaser to that, however I find it hard to believe that there couldn’t be a better budget for these titles.</p>
+<p>Good news is, if you are new to Pokemon, you could potentially enjoy these titles. Perhaps, a better route than playing these titles though is just playing Platinum version. If you really have to play a new 3D title and can’t enjoy the DS graphics of Platinum, then I guess play these and you’ll probably enjoy them. I just think that the new trend in Pokemon is that the fans deserve a lot better than what they are being given...</p>
+
+</main>
+<p>:: <a href="/sections/prison-game-reviews">Prison Game Reviews</a></p>
+
+<footer class="blog-footer">
+
+  <p>
+<a href="https://applecamp.bandcamp.com"><img src="/image/applecamp.png" /><br>
+    grindcore by chinchillas</a>
+♡<br>
+</p>
+
+<p>
+<span id="clean-time"></span>
+<span id="release-time"></span>
+
+<script>
+function parseDateInEST(dateString) {
+    let parts = dateString.split("-");
+    let utcDate = new Date(Date.UTC(parts[0], parts[1] - 1, parts[2], 5)); 
+    return new Date(utcDate.toLocaleString("en-US", { timeZone: "America/New_York" }));
+}
+
+function getTodayInEST() {
+    let now = new Date();
+    let estString = now.toLocaleString("en-US", { timeZone: "America/New_York" });
+    let estDate = new Date(estString);
+    return new Date(estDate.getFullYear(), estDate.getMonth(), estDate.getDate());
+}
+
+function timeSince(dateString) {
+    let startDate = parseDateInEST(dateString);
+    let currentDate = getTodayInEST();
+
+    let years = currentDate.getFullYear() - startDate.getFullYear();
+    let months = currentDate.getMonth() - startDate.getMonth();
+    let days = currentDate.getDate() - startDate.getDate();
+
+    if (days < 0) {
+        months--;
+        let previousMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+        days += previousMonth.getDate();
+    }
+
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    let formatYears = String(years).padStart(2, '0');
+    let formatMonths = String(months).padStart(2, '0');
+    let formatDays = String(days).padStart(2, '0');
+
+    return `${formatYears}Y${formatMonths}M${formatDays}D`;
+}
+
+document.getElementById("clean-time").textContent = timeSince("2018-10-16") + " // ";
+document.getElementById("release-time").textContent = timeSince("2024-10-25");
+</script><br> <a href="/recovery/jft.html">Just For Today</a></p>
+
+
+<p>This site is <a href="https://github.com/archmageakai/www">free and open-source</a> and freely generated by <a href="https://github.com/archmageakai/gikoru">Gikoru</a>.<br>
+Powered by GNU Emacs and Org mode.</p>
+
+<p><a href="https://play.gikopoi.com">play.gikopoi.com</a></p>
+</footer>

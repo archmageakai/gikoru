@@ -10,7 +10,7 @@
     </a>
   </div>
   <nav class="nav-bar">
-    <a href="/index.html">Main</a>
+    <a href="/">Main</a>
     <a href="/sections">Sections</a>
     <a href="/archive">Archive</a>
     <a href="/portal.html">Portal</a>

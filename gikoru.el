@@ -45,7 +45,7 @@
                            \n#+END_EXPORT")
 
 (defvar gikoru-section-list-style "#+BEGIN_EXPORT html\n
-                                   <p><a href=\"./%s/index.html\">%s</a> (%d article%s)</p>
+                                   <p><a href=\"./%s/\">%s</a> (%d article%s)</p>
                                    \n#+END_EXPORT")
 
 
@@ -275,6 +275,7 @@
            (block-start 1)
            (block-end total-pages)
            (html ""))
+      ;; Determine block start/end
       (if (<= total-pages max-pages-visible)
           (setq block-start 1 block-end total-pages)
         (cond
@@ -287,31 +288,38 @@
           (setq block-start (- current-page 2)
                 block-end (+ current-page 2)))))
       (when (< block-start 1) (setq block-start 1))
-      ;; Previous arrows
+
+      ;; Previous arrows (skip on page 2)
       (when (> current-page 1)
-        (setq html (concat html
-                           (format "<a href=\"index.html\">&laquo;</a> ")))
+        (unless (= current-page 2)
+          (setq html (concat html
+                             (format "<a href=\"/\">&laquo;</a> "))))
         (setq html (concat html
                            (format "<a href=\"%s\">&lsaquo;</a> "
-                                   (if (= current-page 2) "index.html"
+                                   (if (= current-page 2) "/"
                                      (format "%s%d.html" base-url (1- current-page)))))))
+
       ;; Page numbers
       (dotimes (i (- block-end block-start -1))
         (let* ((p (+ block-start i))
-               (url (if (= p 1) "index.html" (format "%s%d.html" base-url p))))
+               (url (if (= p 1) "/" (format "%s%d.html" base-url p))))
           (if (= p current-page)
               (setq html (concat html (format " %02d " p)))
             (setq html (concat html (format "<a href=\"%s\">%02d</a> " url p))))))
-      ;; Next arrows
+
+      ;; Next arrows (skip on second-to-last page)
       (when (< current-page total-pages)
         (setq html (concat html
                            (format "<a href=\"%s\">&rsaquo;</a> "
                                    (format "%s%d.html" base-url (1+ current-page)))))
-        (setq html (concat html
-                           (format "<a href=\"%s\">&raquo;</a>"
-                                   (format "%s%d.html" base-url total-pages)))))
-      ;; Wrap in left-aligned div
+        (unless (= current-page (- total-pages 1))
+          (setq html (concat html
+                             (format "<a href=\"%s\">&raquo;</a>"
+                                     (format "%s%d.html" base-url total-pages))))))
+
+      ;; Wrap in div
       (format "<div class=\"pagination\">\n%s\n</div>\n" html))))
+
 
 (defun gikoru--export-index (&optional posts-per-page)
   (let* ((posts-per-page (or posts-per-page 10))

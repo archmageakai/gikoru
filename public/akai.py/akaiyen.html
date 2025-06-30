@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	
+    <title>ギコっぽいの赤いネス</title>
+    <style>
+        table {
+            width: 100%;
+            max-width: 400px;
+            border-collapse: collapse;
+            margin: 20px 0;
+            table-layout: fixed;
+        }
+        table, th, td {
+            border: 1px solid red;
+        }
+        th, td {
+            padding: 4px 8px;
+            font-size: 14px;
+            word-wrap: break-word;
+        }
+        th {
+            text-align: center;
+        }
+        td {
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            th, td {
+                font-size: 12px;
+                padding: 6px 4px;
+            }
+        }
+    </style>
+</head>
+<main>
+
+	<h1>Akaiyen</h1>
+	Akaiyen is the currency used by akai.py bot.<br>
+	<small>akaiyen commands: <code>.balance</code> | <code>.gross</code> | <code>.yen_rate</code></small>
+	
+	<!--
+	<h2><a href="#convert">Convert Gikocoins to Akaiyen</a></h2>
+	<h2><a href="#convert">Check your balance</a></h2>
+	<h2><a href="#convert">Gross earnings</a></h2>
+    <h2><a href="#rate">Akaiyen Conversion Rate</a></h2>
+	-->
+	
+	<h3 id="convert"><u>Convert Gikocoins to Akaiyen</u></h3>
+	Type <code>!send &lt;amount&gt; akai.py◆NEET</code> to convert gikocoins to akaiyen.<br><br>
+	This utilizes the <code>!send</code> command of giko.py bot to send gikocoins to akai.py, for conversion into akaiyen.<br>
+	There is a maximum transfer of 100000 Gikocoins. If you send above this amount, your coins will be sent back to you.<br>
+	This info can also be found using the <code>.convert</code> command. This command does not convert coins.
+	
+	<h3 id="balance"><u>Check your balance</u></h3>
+	You can check your balance using <code>.balance</code> command<br><br>
+	This is the amount of yen available in your wallet, basically.
+	
+	<h3 id="gross"><u>Gross earnings</u></h3>
+	You can check your gross earnings using <code>.gross</code> command<br><br>
+	This is the amount of akaiyen you have acquired overtime. It is this number that determines what your conversion rates for akaiyen.
+	
+	<h3 id="rate"><u>Akaiyen Conversion Rate</u></h3>
+	Use the command <code>.yen_rate</code> to see what your rate is. <br>
+	You should also refer to the table below. 
+	The left column lists the thresholds -- if a user's gross earnings are <i>below</i> this amount, they use the corresponding rate.<br>
+	The right column shows the conversion rate.
+    <table>
+        <thead>
+            <tr>
+                <th>Akaiyen Threshold <br> (use <code>.gross</code> for your threshold!)</th>
+                <th>Akaiyen to Gikocoins Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>0-99</td>
+                <td>1:10</td>
+            </tr>
+            <tr>
+                <td>100-999</td>
+                <td>1:100</td>
+            </tr>
+            <tr>
+                <td>1000-9999</td>
+                <td>1:1000</td>
+            </tr>
+            <tr>
+                <td>10000-99999</td>
+                <td>1:10000</td>
+            </tr>
+            <tr>
+                <td>100000+</td>
+                <td>1:100000</td>
+            </tr>
+        </tbody>
+    </table>
+	<small>Akaiyen to Gikocoins Conversion Table</small><br>
+	
+	<br>[<a href="/akai.py/">
+      akai.py index
+    </a>]
+    <br><br>[<a href="/">
+      <img src="https://akai.gikopoi.com/image/wiz.png">
+    </a>]
+</main>
+</html>

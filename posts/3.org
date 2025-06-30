@@ -1,0 +1,9 @@
+#+POST-TITLE: 3
+#+TIME: 2025-06-29T21:40:34-04:00
+#+SECTION: Numbers
+#+PUBLIC: YES
+
+#+BEGIN_EXPORT html
+<p>I haven't done any actual update regarding the blog in awhile. I just have mostly been in post-mode or not posting as much as of late. This post is more in lines with my last post, discussing about blog/static page generation of the site. I started out messing with the Hugo software very briefly, and then I wanted something more module (and outside the Go language). I wrote some really messy python scripts that worked, and that was what I built on and worked with for months. Now the blog generator has been reformatted as well as rewritten in Emacs Lisp. I really have had a great time writing in Emacs Lisp, past the .emacs file. I hope I can soon write more programs in Emacs Lisp, that are part of my daily/regular routine. My mental health and wellbeing have never been the same without GNU Emacs and Org mode. I really recommend you give it a try, if you haven't.</p>
+<p>I'll probably start writing more about programming, and how I approach different understandings. Discussions about discrete mathematics as well as calculus among other things. What is great about using Org, when writing the blog especially, is that I can embed LaTeX really easily here and use all sorts of markup languages. I prefer HTML/css a lot, but it is really nice to easily embed with it using Org. Here's to improving, efficiency, and working smart (not harder) !!!</p>
+#+END_EXPORT
